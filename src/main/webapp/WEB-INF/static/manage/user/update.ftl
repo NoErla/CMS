@@ -23,24 +23,31 @@
 							</div>
 						</div>
 						<div class="form-group">
-							<label class="col-sm-2 col-sm-2 control-label">用户名称</label>
+							<label class="col-sm-2 col-sm-2 control-label">用户名</label>
 							<div class="col-sm-10">
-								<input type="text" class="form-control" name="userName" value="${user.name}"
-									placeholder="用户名称" id="userName">
+								<input type="text" class="form-control" name="username" value="${user.username}"
+									placeholder="用户名" id="username">
 							</div>
 						</div>
 						<div class="form-group">
-							<label class="col-sm-2 col-sm-2 control-label">open</label>
+							<label class="col-sm-2 col-sm-2 control-label">密码</label>
 							<div class="col-sm-10">
-								<input type="text" class="form-control" name="open" value="${user.openId}"
-									placeholder="open" id="open">
+								<input type="text" class="form-control" name="password" value="${user.password}"
+									placeholder="密码" id="password">
 							</div>
 						</div>
 						<div class="form-group">
-							<label class="col-sm-2 col-sm-2 control-label">类型</label>
+							<label class="col-sm-2 col-sm-2 control-label">昵称</label>
 							<div class="col-sm-10">
-								<label type="text" class="form-control" name="type" value="${user.type}"
-									placeholder="用户类型" id="type">${user.type}</label>
+								<input type="text" class="form-control" name="nickname" value="${user.nickname}"
+									placeholder="昵称" id="nickname">${user.nickname}</label>
+							</div>
+						</div>
+						<div class="form-group">
+							<label class="col-sm-2 col-sm-2 control-label">姓名</label>
+							<div class="col-sm-10">
+								<input type="text" class="form-control" name="name" value="${user.name}"
+									placeholder="姓名" id="name">${user.name}</label>
 							</div>
 						</div>
 						<div class="form-group">

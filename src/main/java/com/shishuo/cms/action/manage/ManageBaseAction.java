@@ -49,6 +49,7 @@ public class ManageBaseAction {
 
 	@Autowired
 	protected AdminService adminService;
+	
 	@Autowired
 	protected UserService userService;
 

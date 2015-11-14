@@ -9,6 +9,7 @@ package com.shishuo.cms.action.manage;
 import javax.servlet.http.HttpServletRequest;
 
 import org.apache.commons.lang3.StringUtils;
+import org.junit.Test;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -94,6 +95,7 @@ public class ManageUserAction extends ManageBaseAction {
 		}
 		return json;
 	}
+	
 
 	/**
 	 * 进入用户列表页面
@@ -115,8 +117,7 @@ public class ManageUserAction extends ManageBaseAction {
 	public String update(
 			@RequestParam(value = "userId", defaultValue = "0") long userId,
 			ModelMap modelMap, HttpServletRequest request) {
-		User sessionUser = this.getUser(request);
-		User user = userService.getUserById(sessionUser.getUserId());
+		User user = userService.getUserById(userId);
 		modelMap.put("user", user);
 		return "manage/user/update";
 	}
@@ -128,12 +129,15 @@ public class ManageUserAction extends ManageBaseAction {
 	@ResponseBody
 	@RequestMapping(value = "/update.json", method = RequestMethod.POST)
 	public JsonVo<String> updateUser(
+			@RequestParam(value = "userId") long userId,
+			@RequestParam(value = "username") String username,
 			@RequestParam(value = "password") String password,
 			@RequestParam(value = "nickname") String nickname,
 			@RequestParam(value = "name") String name,
 			HttpServletRequest request) {
 		JsonVo<String> json = new JsonVo<String>();
 		try {
+			
 			if (StringUtils.isBlank(password)) {
 				json.getErrors().put("password", "密码不能为空");
 			}
@@ -145,9 +149,7 @@ public class ManageUserAction extends ManageBaseAction {
 			}
 			// 检测校验结果
 			validate(json);
-			SSUtils.toText(password);
-			User user = this.getUser(request);
-			userService.updateUserByUserId(user.getUserId(),
+			userService.updateUserByUserId(userId,username,
 					SSUtils.toText(password), nickname, name);
 			json.setResult(true);
 		} catch (Exception e) {

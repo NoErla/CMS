@@ -9,6 +9,7 @@ package com.shishuo.cms.action.manage;
 import javax.servlet.http.HttpServletRequest;
 
 import org.apache.commons.lang3.StringUtils;
+import org.junit.Test;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -102,6 +103,7 @@ public class ManageAdminAction extends ManageBaseAction {
 		modelMap.put("pageVo", adminService.getAllListPage(pageNum));
 		return "manage/admin/all";
 	}
+	
 
 	/**
 	 * 进入单个admmin页面
