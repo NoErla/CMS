@@ -30,7 +30,7 @@ public interface UserDao {
 	/**
 	 * 添加用户
 	 * 
-	 * @param Admin
+	 * @param User
 	 * @return Integer
 	 * 
 	 */
@@ -63,8 +63,9 @@ public interface UserDao {
 	 * @param name
 	 * @return User
 	 * @param password
+	 * @param user_name 
 	 */
-	public void updateUserByuserId(@Param("userId") long userId,
+	public void updateUserByuserId(@Param("userId") long userId,@Param("username")String username,
 			@Param("password") String password,@Param("nickname")String nickname,
 			@Param("name")String name);
 

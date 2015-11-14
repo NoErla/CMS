@@ -13,6 +13,7 @@ import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
+import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -93,12 +94,13 @@ public class UserService {
 	 * @throws AuthException
 	 */
 
-	public void updateUserByUserId(long userId, String password,String nickname,String name)
+	public void updateUserByUserId(long userId, String username,String password,String nickname,String name)
 			throws AuthException {
+		String user_username = username;
 		String user_password = AuthUtils.getPassword(password);
-		String user_nickame = AuthUtils.getPassword(nickname);
-		String user_name = AuthUtils.getPassword(name);
-		userDao.updateUserByuserId(userId, user_password,user_nickame,user_name);
+		String user_nickame = nickname;
+		String user_name = name;
+		userDao.updateUserByuserId(userId, user_username,user_password,user_nickame,user_name);
 	}
 
 	// ///////////////////////////////

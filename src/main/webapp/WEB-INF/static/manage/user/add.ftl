@@ -35,8 +35,29 @@
                                   <div class="form-group">
                                       <label class="col-sm-2 col-sm-2 control-label">用户名称</label>
                                       <div class="col-sm-10">
-                                          <input type="text" class="form-control" name="userName"
-                                          	placeholder="用户名称" id="userName" vaule="${userName}">
+                                          <input type="text" class="form-control" name="username"
+                                          	placeholder="用户名" id="username" vaule="${username}">
+                                      </div>
+                                  </div>
+                                  <div class="form-group">
+                                      <label class="col-sm-2 col-sm-2 control-label">用户密码</label>
+                                      <div class="col-sm-10">
+                                          <input type="text" class="form-control" name="password"
+                                          	placeholder="用户密码" id="password" vaule="${password}">
+                                      </div>
+                                  </div>
+                                  <div class="form-group">
+                                      <label class="col-sm-2 col-sm-2 control-label">用户昵称</label>
+                                      <div class="col-sm-10">
+                                          <input type="text" class="form-control" name="nickname"
+                                          	placeholder="用户昵称" id="nickname" vaule="${nickname}">
+                                      </div>
+                                  </div>
+                                  <div class="form-group">
+                                      <label class="col-sm-2 col-sm-2 control-label">姓名</label>
+                                      <div class="col-sm-10">
+                                          <input type="text" class="form-control" name="name"
+                                          	placeholder="姓名" id="name" vaule="${name}">
                                       </div>
                                   </div>
                                   <div class="form-group">
@@ -55,6 +76,7 @@
 		<!--main content end-->
 <script type="text/javascript">
 	$(function() {
+		
 		$('#add_user_form').ajaxForm({
 			dataType : 'json',
 			success : function(data) {
@@ -66,7 +88,7 @@
 					showErrors($('#add_user_form'),data.errors);
 				}
 			}
-		});
+		}); 
 	});	
 </script>
 <#include "/manage/foot.ftl">
