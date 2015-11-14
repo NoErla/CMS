@@ -119,14 +119,14 @@ CREATE TABLE `media` (
   KEY `idx_kind` (`kind`,`kindId`) USING BTREE
 ) ENGINE=InnoDB DEFAULT CHARSET=ucs2 ROW_FORMAT=COMPACT;
 
-CREATE TABLE `user` (
-  `userId` bigint(20) NOT NULL AUTO_INCREMENT COMMENT '用户ID',
-  `openId` bigint(20) DEFAULT NULL COMMENT '公共用户ID，只有是师说，QQ，微博等其它网站登录时才有。',
-  `type` varchar(20) DEFAULT NULL COMMENT '帐号类型：0 本站 1 师说 2 QQ 3 微博',
-  `name` varchar(45) DEFAULT NULL COMMENT '用户名',
-  `createTime` datetime DEFAULT NULL COMMENT '创建时间',
-  PRIMARY KEY (`userId`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 ROW_FORMAT=COMPACT COMMENT='用户';
+create table `user` (
+	`userId` double ,
+	`username` varchar (60),
+	`password` varchar (96),
+	`nickname` varchar (60),
+	`name` varchar (60),
+	`createTime` datetime  
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 ;
 
 
 INSERT INTO `admin` VALUES (1,'shishuocms','6158f875bf826e15923779855b6eef2e','2012-08-08 00:00:00');
