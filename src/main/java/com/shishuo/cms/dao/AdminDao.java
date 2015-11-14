@@ -53,7 +53,7 @@ public interface AdminDao {
 	// ///////////////////////////////
 
 	/**
-	 * 修改管理员的信息
+	 * 修改管理员信息
 	 * 
 	 * @param userId
 	 * @param name
