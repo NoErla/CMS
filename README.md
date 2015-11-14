@@ -24,7 +24,9 @@ QQ群：7343505 <a target="_blank" href="http://shang.qq.com/wpa/qunwpa?idkey=83
 1. 复制 /src/main/resources/shishuocms.properties 到 /
 2. 修改 shishuocms.properties 里的数据库链接、用户名和密码为生产环境的值
 3. mvn package
-4. 生成/dist文件夹，此文件夹为生产环境的编译目录
+4. 运行  mvn jetty:run
+5. 进入后台地址：http://localhost:8080/admin/login.htm
+6. 生成/dist文件夹，此文件夹为生产环境的编译目录
 
 ## 师说CMS的功能
 
