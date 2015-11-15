@@ -25,14 +25,19 @@ public class User {
 	private long userId;
 
 	/**
-	 * 公共用户ID
+	 * 用户名
 	 */
-	private long openId;
+	private String username;
 
 	/**
-	 * 帐号类型
+	 * 密码
 	 */
-	private UserConstant.Type type;
+	private String password;
+	
+	/**
+	 * 昵称
+	 */
+	private String nickname;
 
 	/**
 	 * 用户名
@@ -52,20 +57,28 @@ public class User {
 		this.userId = userId;
 	}
 
-	public long getOpenId() {
-		return openId;
+	public String getUsername() {
+		return username;
 	}
 
-	public void setOpenId(long openId) {
-		this.openId = openId;
+	public void setUsername(String username) {
+		this.username = username;
 	}
 
-	public UserConstant.Type getType() {
-		return type;
+	public String getPassword() {
+		return password;
 	}
 
-	public void setType(UserConstant.Type type) {
-		this.type = type;
+	public void setPassword(String password) {
+		this.password = password;
+	}
+
+	public String getNickname() {
+		return nickname;
+	}
+
+	public void setNickname(String nickname) {
+		this.nickname = nickname;
 	}
 
 	public String getName() {
@@ -83,5 +96,7 @@ public class User {
 	public void setCreateTime(Date createTime) {
 		this.createTime = createTime;
 	}
+
+	
 
 }

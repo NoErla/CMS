@@ -35,6 +35,11 @@ public class SystemConstant {
 	 * Session中的管理员Key
 	 */
 	public static final String SESSION_ADMIN = "SESSION_ADMIN";
+	
+	/**
+	 * Session中的用户Key
+	 */
+	public static final String SESSION_USER = "SESSION_USER";
 
 	/**
 	 * 头像URL 180x180
@@ -45,5 +50,7 @@ public class SystemConstant {
 	 * 
 	 */
 	public static final String LANGUAGE = "language";
+
+	
 
 }

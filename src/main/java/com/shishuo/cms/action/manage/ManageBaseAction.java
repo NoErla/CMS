@@ -15,6 +15,7 @@ import org.springframework.stereotype.Controller;
 import com.shishuo.cms.constant.SystemConstant;
 import com.shishuo.cms.entity.vo.AdminVo;
 import com.shishuo.cms.entity.vo.JsonVo;
+import com.shishuo.cms.entity.vo.UserVo;
 import com.shishuo.cms.exception.ValidateException;
 import com.shishuo.cms.service.AdminFolderService;
 import com.shishuo.cms.service.AdminService;
@@ -23,6 +24,7 @@ import com.shishuo.cms.service.ConfigService;
 import com.shishuo.cms.service.FolderService;
 import com.shishuo.cms.service.HeadlineService;
 import com.shishuo.cms.service.MediaService;
+import com.shishuo.cms.service.UserService;
 
 /**
  * @author 所有action的父类
@@ -47,6 +49,9 @@ public class ManageBaseAction {
 
 	@Autowired
 	protected AdminService adminService;
+	
+	@Autowired
+	protected UserService userService;
 
 	@Autowired
 	protected HeadlineService headlineService;
@@ -80,5 +85,16 @@ public class ManageBaseAction {
 		AdminVo admin = (AdminVo) request.getSession().getAttribute(
 				SystemConstant.SESSION_ADMIN);
 		return admin;
+	}
+	/**
+	 * 从session中获得用户的信息
+	 * 
+	 * @param request
+	 * @return
+	 */
+	protected UserVo getUser(HttpServletRequest request) {
+		UserVo user = (UserVo) request.getSession().getAttribute(
+				SystemConstant.SESSION_USER);
+		return user;
 	}
 }

@@ -10,75 +10,82 @@ import java.util.List;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Repository;
 
-import com.shishuo.cms.entity.Admin;
-import com.shishuo.cms.entity.vo.AdminVo;
+import com.shishuo.cms.entity.User;
+import com.shishuo.cms.entity.vo.UserVo;
+
 
 /**
- * 管理员
+ * 用户
  * 
- * @author Zhangjiale
+ * @author myc
  */
 
 @Repository
-public interface AdminDao {
+public interface UserDao {
 
 	// ///////////////////////////////
 	// ///// 增加 ////////
 	// ///////////////////////////////
 
 	/**
-	 * 添加管理员
+	 * 添加用户
 	 * 
-	 * @param Admin
+	 * @param User
 	 * @return Integer
 	 * 
 	 */
-	public int addAdmin(Admin admin);
+	public int addUser(User user);
 
 	// ///////////////////////////////
 	// ///// 刪除 ////////
 	// ///////////////////////////////
 
 	/**
-	 * 删除管理员
+	 * 删除用户
 	 * 
-	 * @param adminId
+	 * @param userId
 	 * @return Integer
 	 * 
 	 */
-	public int deleteAdmin(@Param("adminId") long adminId);
+	public int deleteUser(@Param("userId") long userId);
 
 	// ///////////////////////////////
 	// ///// 修改 ////////
 	// ///////////////////////////////
 
 	/**
-	 * 修改管理员信息
+	 * 修改用户信息
 	 * 
 	 * @param userId
-	 * @param name
+	 * @param username
 	 * @param password
+	 * @param nickname
+	 * @param name
+	 * @return User
+	 * @param password
+	 * @param user_name 
 	 */
-	public void updateAdminByadminId(@Param("adminId") long adminId,
-			@Param("password") String password);
+	public void updateUserByuserId(@Param("userId") long userId,@Param("username")String username,
+			@Param("password") String password,@Param("nickname")String nickname,
+			@Param("name")String name);
 
 	// ///////////////////////////////
 	// ///// 查詢 ////////
 	// ///////////////////////////////
 
 	/**
-	 * 获取所有管理员列表
+	 * 获取所有用户列表
 	 * 
 	 * @param offset
 	 * @param rows
-	 * @return List<Admin>
+	 * @return List<User>
 	 * 
 	 */
-	public List<Admin> getAllList(@Param("offset") long offset,
+	public List<User> getAllList(@Param("offset") long offset,
 			@Param("rows") long rows);
 
 	/**
-	 * 获取所有管理员的数量
+	 * 获取所有用户的数量
 	 * 
 	 * @return Integer
 	 * 
@@ -86,20 +93,20 @@ public interface AdminDao {
 	public int getAllListCount();
 
 	/**
-	 * 通过Id获得指定管理员资料
+	 * 通过Id获得指定用户资料
 	 * 
-	 * @param adminId
-	 * @return Admin
+	 * @param userId
+	 * @return User
 	 */
-	public Admin getAdminById(@Param("adminId") long adminId);
+	public User getUserById(@Param("userId") long userId);
 
 	/**
-	 * 通过email获得指定的管理员
+	 * 通过username获得指定的用户
 	 * 
-	 * @param email
-	 * @return Admin
+	 * @param username
+	 * @return User
 	 * 
 	 */
-	public AdminVo getAdminByName(@Param("name") String name);
+	public UserVo getUserByUsername(@Param("username") String username);
 
 }

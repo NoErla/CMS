@@ -17,64 +17,68 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.shishuo.cms.entity.Admin;
+import com.shishuo.cms.entity.User;
 import com.shishuo.cms.entity.vo.JsonVo;
 import com.shishuo.cms.util.SSUtils;
 
 /**
- * 管理员action
+ * 用户action
  * 
- * @author Zhangjiale
+ * @author myc
  * 
  */
 @Controller
-@RequestMapping("/manage/admin")
-public class ManageAdminAction extends ManageBaseAction {
+@RequestMapping("/manage/user")
+public class ManageUserAction extends ManageBaseAction {
 
 	/**
-	 * 进入添加admin页面
+	 * 进入添加user页面
 	 * 
 	 */
 	@RequestMapping(value = "/add.htm", method = RequestMethod.GET)
 	public String addUser(ModelMap modelMap) {
-		modelMap.put("adminName", "");
-		modelMap.put("email", "");
-		return "manage/admin/add";
+		modelMap.put("username", "");
+		modelMap.put("password", "");
+		modelMap.put("nickname", "");
+		modelMap.put("name", "");
+		return "manage/user/add";
 	}
 
 	/**
 	 * 
-	 * 进入管理员管理页面
+	 * 进入用户管理页面
 	 */
 	@RequestMapping(value = "/manage.htm", method = RequestMethod.GET)
 	public String manage(
 			@RequestParam(value = "p", defaultValue = "1") int pageNum,
 			ModelMap modelMap) {
-		modelMap.put("pageVo", adminService.getAllListPage(pageNum));
-		return "manage/admin/manage";
+		modelMap.put("pageVo", userService.getAllListPage(pageNum));
+		return "manage/user/manage";
 	}
 
 	/**
-	 * 添加Admin
+	 * 添加User
 	 * 
 	 */
 	@ResponseBody
 	@RequestMapping(value = "/addNew.json", method = RequestMethod.POST)
 	public JsonVo<String> addNewUser(
-			@RequestParam(value = "adminName") String adminName,
-			@RequestParam(value = "password") String password) {
+			@RequestParam(value = "username") String username,
+			@RequestParam(value = "password") String password,
+			@RequestParam(value = "nickname") String nickname,
+			@RequestParam(value = "name") String name) {
 		JsonVo<String> json = new JsonVo<String>();
-		Admin admin = adminService.getAdminByName(adminName);
-		if (admin == null) {
+		User user = userService.getUserByUsername(username);
+		if (user == null) {
 		} else {
-			json.getErrors().put("adminName", "管理员名称不能重复");
+			json.getErrors().put("username", "用户名不能重复");
 		}
 		try {
-			if (adminName.equals("")) {
-				json.getErrors().put("adminName", "管理员名称不能为空");
+			if (username.equals("")) {
+				json.getErrors().put("username", "用户名称不能为空");
 			}
 			if (StringUtils.isBlank(password)) {
-				json.getErrors().put("password", "管理员密码不能为空");
+				json.getErrors().put("password", "密码不能为空");
 			} else if (password.length() < 6) {
 				json.getErrors().put("password", "密码不能小于6位");
 			} else if (password.length() > 16) {
@@ -82,8 +86,8 @@ public class ManageAdminAction extends ManageBaseAction {
 			}
 			// 检测校验结果
 			validate(json);
-			adminService.addAdmin(SSUtils.toText(adminName.trim()),
-					password);
+			userService.addUser(SSUtils.toText(username.trim()),
+					password,nickname,name);
 			json.setResult(true);
 		} catch (Exception e) {
 			json.setResult(false);
@@ -91,45 +95,49 @@ public class ManageAdminAction extends ManageBaseAction {
 		}
 		return json;
 	}
+	
 
 	/**
-	 * 进入管理员列表页面
+	 * 进入用户列表页面
 	 * 
 	 */
 	@RequestMapping(value = "/page.htm", method = RequestMethod.GET)
 	public String allList(
 			@RequestParam(value = "p", defaultValue = "1") int pageNum,
 			ModelMap modelMap) {
-		modelMap.put("pageVo", adminService.getAllListPage(pageNum));
-		return "manage/admin/all";
+		modelMap.put("pageVo", userService.getAllListPage(pageNum));
+		return "manage/user/all";
 	}
-	
 
 	/**
-	 * 进入单个admmin页面
+	 * 进入单个user页面
 	 * 
 	 */
 	@RequestMapping(value = "/update.htm", method = RequestMethod.GET)
 	public String update(
-			@RequestParam(value = "adminId", defaultValue = "0") long adminId,
+			@RequestParam(value = "userId", defaultValue = "0") long userId,
 			ModelMap modelMap, HttpServletRequest request) {
-		Admin sessionAdmin = this.getAdmin(request);
-		Admin admin = adminService.getAdminById(sessionAdmin.getAdminId());
-		modelMap.put("admin", admin);
-		return "manage/admin/update";
+		User user = userService.getUserById(userId);
+		modelMap.put("user", user);
+		return "manage/user/update";
 	}
 
 	/**
-	 * 修改指定的admin资料
+	 * 修改指定的user资料
 	 * 
 	 */
 	@ResponseBody
 	@RequestMapping(value = "/update.json", method = RequestMethod.POST)
-	public JsonVo<String> updateAdmin(
+	public JsonVo<String> updateUser(
+			@RequestParam(value = "userId") long userId,
+			@RequestParam(value = "username") String username,
 			@RequestParam(value = "password") String password,
+			@RequestParam(value = "nickname") String nickname,
+			@RequestParam(value = "name") String name,
 			HttpServletRequest request) {
 		JsonVo<String> json = new JsonVo<String>();
 		try {
+			
 			if (StringUtils.isBlank(password)) {
 				json.getErrors().put("password", "密码不能为空");
 			}
@@ -141,10 +149,8 @@ public class ManageAdminAction extends ManageBaseAction {
 			}
 			// 检测校验结果
 			validate(json);
-			SSUtils.toText(password);
-			Admin admin = this.getAdmin(request);
-			adminService.updateAdminByAmdinId(admin.getAdminId(),
-					SSUtils.toText(password));
+			userService.updateUserByUserId(userId,username,
+					SSUtils.toText(password), nickname, name);
 			json.setResult(true);
 		} catch (Exception e) {
 			json.setResult(false);
@@ -154,17 +160,17 @@ public class ManageAdminAction extends ManageBaseAction {
 	}
 
 	/**
-	 * 删除管理员
+	 * 删除用户
 	 * 
 	 */
 
 	@ResponseBody
 	@RequestMapping(value = "/delete.json", method = RequestMethod.POST)
-	public JsonVo<String> delete(@RequestParam(value = "adminId") long adminId,
+	public JsonVo<String> delete(@RequestParam(value = "userId") long userId,
 			HttpServletRequest request) {
 		JsonVo<String> json = new JsonVo<String>();
 		try {
-			adminService.deleteAdmin(adminId);
+			userService.deleteUser(userId);
 			json.setResult(true);
 		} catch (Exception e) {
 			json.setResult(false);
