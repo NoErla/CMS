@@ -56,8 +56,8 @@ public class AdminAction extends BaseAction {
                     com.google.code.kaptcha.Constants.KAPTCHA_SESSION_KEY);
             if (StringUtils.isBlank(password)) {
                 json.getErrors().put("password", "密码不能为空");
-            } else if (password.length() < 6 && password.length() > 30) {
-                json.getErrors().put("password", "密码最少6个字符，最多30个字符");
+            } else if (password.length() < 6 || password.length() > 16) {
+                json.getErrors().put("password", "密码最少6个字符，最多16个字符");
             }
             // 校验验证码
             if (StringUtils.isNotBlank(kaptcha) && kaptcha.equalsIgnoreCase(captcha)) {
