@@ -39,15 +39,15 @@
 						<div class="form-group">
 							<label class="col-sm-2 col-sm-2 control-label">昵称</label>
 							<div class="col-sm-10">
-								<input type="text" class="form-control" name="nickname" value="${user.nickname}"
-									placeholder="昵称" id="nickname">${user.nickname}</label>
+								<input type="text" class="form-control" name="nickname" value="${user.nickname?if_exists}"
+									placeholder="昵称" id="nickname">${user.nickname?if_exists}</label>
 							</div>
 						</div>
 						<div class="form-group">
 							<label class="col-sm-2 col-sm-2 control-label">姓名</label>
 							<div class="col-sm-10">
-								<input type="text" class="form-control" name="name" value="${user.name}"
-									placeholder="姓名" id="name">${user.name}</label>
+								<input type="text" class="form-control" name="name" value="${user.name?if_exists}"
+									placeholder="姓名" id="name">${user.name?if_exists}</label>
 							</div>
 						</div>
 						<div class="form-group">
