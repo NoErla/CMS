@@ -1,6 +1,6 @@
 <#assign menu="user">
 <#assign submenu="user_list">
-<#include "/manage/head.ftl">
+<#include "../head.ftl">
 <style type="text/css">
 .pagination {
     border-radius: 4px;
@@ -107,4 +107,4 @@ $(function(){
 	});
 });
 </script>
-<#include "/manage/foot.ftl">
+<#include "../foot.ftl">
