@@ -23,13 +23,11 @@ import javax.servlet.http.HttpServletRequest;
 
 /**
  * @author Herbert
- * 
  */
 
 @Controller
 @RequestMapping("/admin")
 public class AdminAction extends BaseAction {
-
     @Autowired
     private AdminService adminService;
 
