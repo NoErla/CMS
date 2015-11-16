@@ -20,6 +20,7 @@ import com.shishuo.cms.exception.ValidateException;
 import com.shishuo.cms.service.AdminFolderService;
 import com.shishuo.cms.service.AdminService;
 import com.shishuo.cms.service.ArticleService;
+import com.shishuo.cms.service.CommentService;
 import com.shishuo.cms.service.ConfigService;
 import com.shishuo.cms.service.FolderService;
 import com.shishuo.cms.service.HeadlineService;
@@ -43,6 +44,9 @@ public class ManageBaseAction {
 
 	@Autowired
 	protected ArticleService articleService;
+	
+	@Autowired
+	protected CommentService commentService;
 
 	@Autowired
 	protected MediaService attachmentService;

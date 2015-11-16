@@ -90,12 +90,21 @@
 					</li>
 					<li class="">
 						<a <#if menu="folder">class="active"</#if> href="${BASE_PATH}/manage/folder/list.htm"> <i class="icon-folder-open"></i> <span>目录列表</span></a>
+					</li>
+					<li class="">
+						<a <#if menu="comment">class="active"</#if> href="${BASE_PATH}/manage/comment/page.htm"> <i class="icon-folder-open"></i> <span>评论列表</span></a>
 					</li>	
 					<li class="">
 						<a <#if menu="message">class="active"</#if> href="${BASE_PATH}/manage/guestbook/list.htm"> <i class="icon-comments"></i> <span>留言列表</span></a>
 					</li>
 					<li class="">
 						<a <#if menu="admin_list">class="active"</#if> href="${BASE_PATH}/manage/admin/manage.htm"> <i class="icon-user"></i> <span>管理员管理</span></a>
+					</li>
+					<li class="">
+						<a <#if menu="user_list">class="active"</#if> href="${BASE_PATH}/manage/user/page.htm"> <i class="icon-user"></i> <span>用户管理</span></a>
+					</li>
+					<li class="">
+						<a <#if menu="config">class="active"</#if> href="${BASE_PATH}/manage/config/basic.htm"> <i class="icon-cogs"></i> <span>基本设置</span></a>
 					</li>
 					<li class="">
 						<a <#if menu="update_password">class="active"</#if> href="${BASE_PATH}/manage/admin/update.htm"> <i class="icon-cogs"></i> <span>修改密码</span></a>

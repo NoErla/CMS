@@ -81,7 +81,6 @@ public class AdminAction extends BaseAction {
 				json.getErrors().put("captcha", "验证码错误");
 			}
 			json.check();
-
 			adminService.adminLogin(name, password, request);
 
 		} catch (Exception e) {

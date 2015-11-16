@@ -7,6 +7,7 @@
 package com.shishuo.cms.service;
 
 import java.util.Date;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.annotation.CacheEvict;
@@ -73,7 +74,7 @@ public class ConfigService {
 	 * @param key
 	 * @param value
 	 */
-	@CacheEvict(value = "config")
+	@CacheEvict(value = "config", allEntries = true)
 	public Config updagteConfigByKey(String key, String value) {
 		Config config = configDao.getConfigByKey(key);
 		config.setValue(value);
@@ -81,12 +82,16 @@ public class ConfigService {
 		this.getStringByKey(key);
 		return config;
 	}
+	
+	// ///////////////////////////////
+		// ///// 查询 ////////
+		// ///////////////////////////////
 
 	/**
 	 * @param key
 	 * @return
 	 */
-	@Cacheable(value = "config")
+	@CacheEvict(value = "config", allEntries = true)
 	public String getStringByKey(String key) {
 		Config config = configDao.getConfigByKey(key);
 		if (config == null) {
@@ -95,12 +100,17 @@ public class ConfigService {
 			return config.getValue();
 		}
 	}
+	
+	@CacheEvict(value = "config", allEntries = true)
+	public List<Config> getConfigList(){
+		return configDao.getConfigList();
+	}
 
 	/**
 	 * @param key
 	 * @return
 	 */
-	@Cacheable(value = "config")
+	@CacheEvict(value = "config", allEntries = true)
 	public int getIntKey(String key) {
 		Config config = configDao.getConfigByKey(key);
 		if (config == null) {
