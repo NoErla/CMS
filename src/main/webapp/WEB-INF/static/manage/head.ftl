@@ -102,6 +102,10 @@
                                 class="icon-comments"></i> <span>留言列表</span></a>
                     </li>
                     <li class="">
+                        <a <#if menu="user_list">class="active"</#if> href="${BASE_PATH}/manage/user/manage.htm"> <i
+                                class="icon-user"></i> <span>用户管理</span></a>
+                    </li>
+                    <li class="">
                         <a <#if menu="admin_list">class="active"</#if> href="${BASE_PATH}/manage/admin/manage.htm"> <i
                                 class="icon-user"></i> <span>管理员管理</span></a>
                     </li>
