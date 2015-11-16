@@ -6,7 +6,6 @@
 
 package com.shishuo.cms.action;
 
-import com.google.code.kaptcha.impl.DefaultKaptcha;
 import com.shishuo.cms.constant.SystemConstant;
 import com.shishuo.cms.entity.vo.JsonVo;
 import com.shishuo.cms.service.AdminService;
@@ -20,11 +19,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import javax.imageio.ImageIO;
-import javax.servlet.ServletOutputStream;
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-import java.awt.image.BufferedImage;
 
 /**
  * @author Herbert
@@ -33,12 +28,6 @@ import java.awt.image.BufferedImage;
 @Controller
 @RequestMapping("/admin")
 public class AdminAction extends BaseAction {
-
-    /**
-     * Kaptcha 验证码
-     */
-    @Autowired
-    private DefaultKaptcha captchaProducer;
 
     @Autowired
     private AdminService adminService;
@@ -91,33 +80,5 @@ public class AdminAction extends BaseAction {
         return json;
     }
 
-    /**
-     * 生成验证码
-     *
-     * @param request
-     * @param response
-     * @throws Exception
-     */
-    @RequestMapping(value = "captcha.htm", method = RequestMethod.GET)
-    public void captcha(HttpServletRequest request, HttpServletResponse response)
-            throws Exception {
-        response.setDateHeader("Expires", 0);
-        response.setHeader("Cache-Control",
-                "no-store, no-cache, must-revalidate");
-        response.addHeader("Cache-Control", "post-check=0, pre-check=0");
-        response.setHeader("Pragma", "no-cache");
-        response.setContentType("image/jpeg");
 
-        String capText = captchaProducer.createText();
-        request.getSession().setAttribute(com.google.code.kaptcha.Constants.KAPTCHA_SESSION_KEY, capText);
-
-        BufferedImage bi = captchaProducer.createImage(capText);
-        ServletOutputStream out = response.getOutputStream();
-        ImageIO.write(bi, "jpg", out);
-        try {
-            out.flush();
-        } finally {
-            out.close();
-        }
-    }
 }
