@@ -71,8 +71,7 @@ public class AdminAction extends BaseAction {
                 json.getErrors().put("password", "密码最少6个字符，最多30个字符");
             }
             // 校验验证码
-            if (StringUtils.isNotBlank(kaptcha)
-                    && kaptcha.equalsIgnoreCase(captcha)) {
+            if (StringUtils.isNotBlank(kaptcha) && kaptcha.equalsIgnoreCase(captcha)) {
 
             } else {
                 json.getErrors().put("captcha", "验证码错误");
@@ -108,9 +107,10 @@ public class AdminAction extends BaseAction {
         response.addHeader("Cache-Control", "post-check=0, pre-check=0");
         response.setHeader("Pragma", "no-cache");
         response.setContentType("image/jpeg");
+
         String capText = captchaProducer.createText();
-        request.getSession().setAttribute(
-                com.google.code.kaptcha.Constants.KAPTCHA_SESSION_KEY, capText);
+        request.getSession().setAttribute(com.google.code.kaptcha.Constants.KAPTCHA_SESSION_KEY, capText);
+
         BufferedImage bi = captchaProducer.createImage(capText);
         ServletOutputStream out = response.getOutputStream();
         ImageIO.write(bi, "jpg", out);
