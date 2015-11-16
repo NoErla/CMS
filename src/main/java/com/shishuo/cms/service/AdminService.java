@@ -13,6 +13,7 @@ import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
+import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -126,6 +127,11 @@ public class AdminService {
 		} else {
 			throw new AuthException("邮箱或密码错误");
 		}
+	}
+	
+	@Test
+	public void test(){
+		System.out.println(PropertyUtils.getValue("shishuocms.admin"));
 	}
 
 	/**

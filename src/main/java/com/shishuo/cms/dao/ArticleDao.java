@@ -80,6 +80,12 @@ public interface ArticleDao {
 	public int updateCommentCount(@Param("articleId") long articleId,
 			@Param("commentCount") int commentCount);
 
+	/**
+	 * 修改文件审核状态
+	 * @param articleId
+	 * @param check
+	 * @return
+	 */
 	public int updateCheck(@Param("articleId") long articleId,
 			@Param("check") check check);
 
