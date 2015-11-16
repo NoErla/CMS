@@ -1,15 +1,9 @@
-/*
- *	Copyright © 2013 Changsha Shishuo Network Technology Co., Ltd. All rights reserved.
- *	长沙市师说网络科技有限公司 版权所有
- *	http://www.shishuo.com
- */
-
 package com.shishuo.cms.action;
 
-import com.google.code.kaptcha.impl.DefaultKaptcha;
+import com.google.code.kaptcha.Constants;
 import com.shishuo.cms.constant.SystemConstant;
 import com.shishuo.cms.entity.vo.JsonVo;
-import com.shishuo.cms.service.AdminService;
+import com.shishuo.cms.service.UserService;
 import com.shishuo.cms.util.HttpUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,32 +14,26 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import javax.imageio.ImageIO;
-import javax.servlet.ServletOutputStream;
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-import java.awt.image.BufferedImage;
+
 
 /**
- * @author Herbert
+ * project_name:shishuocms
+ * package_name:com.shishuo.cms.action
+ * user: youzipi
+ * date: 15-11-16 下午2:40
  */
-
 @Controller
-@RequestMapping("/admin")
-public class AdminAction extends BaseAction {
+@RequestMapping("/user")
+public class UserAction extends BaseAction {
 
-    /**
-     * Kaptcha 验证码
-     */
-    @Autowired
-    private DefaultKaptcha captchaProducer;
 
     @Autowired
-    private AdminService adminService;
+    private UserService userService;
 
     @RequestMapping(value = "/login.htm", method = RequestMethod.GET)
     public String login(HttpServletRequest request, ModelMap modelMap) {
-        return "/manage/login";
+        return "/user/login";
     }
 
     @RequestMapping(value = "/logout.htm", method = RequestMethod.GET)
@@ -63,8 +51,7 @@ public class AdminAction extends BaseAction {
         JsonVo<String> json = new JsonVo<String>();
 
         try {
-            String kaptcha = (String) request.getSession().getAttribute(
-                    com.google.code.kaptcha.Constants.KAPTCHA_SESSION_KEY);
+            String kaptcha = (String) request.getSession().getAttribute(Constants.KAPTCHA_SESSION_KEY);
             if (StringUtils.isBlank(password)) {
                 json.getErrors().put("password", "密码不能为空");
             } else if (password.length() < 6 && password.length() > 30) {
@@ -78,7 +65,7 @@ public class AdminAction extends BaseAction {
             }
             json.check();
 
-            adminService.adminLogin(name, password, request);
+            userService.userLogin(name, password, request);
 
         } catch (Exception e) {
             // 异常，重置验证码
@@ -91,33 +78,4 @@ public class AdminAction extends BaseAction {
         return json;
     }
 
-    /**
-     * 生成验证码
-     *
-     * @param request
-     * @param response
-     * @throws Exception
-     */
-    @RequestMapping(value = "captcha.htm", method = RequestMethod.GET)
-    public void captcha(HttpServletRequest request, HttpServletResponse response)
-            throws Exception {
-        response.setDateHeader("Expires", 0);
-        response.setHeader("Cache-Control",
-                "no-store, no-cache, must-revalidate");
-        response.addHeader("Cache-Control", "post-check=0, pre-check=0");
-        response.setHeader("Pragma", "no-cache");
-        response.setContentType("image/jpeg");
-
-        String capText = captchaProducer.createText();
-        request.getSession().setAttribute(com.google.code.kaptcha.Constants.KAPTCHA_SESSION_KEY, capText);
-
-        BufferedImage bi = captchaProducer.createImage(capText);
-        ServletOutputStream out = response.getOutputStream();
-        ImageIO.write(bi, "jpg", out);
-        try {
-            out.flush();
-        } finally {
-            out.close();
-        }
-    }
 }

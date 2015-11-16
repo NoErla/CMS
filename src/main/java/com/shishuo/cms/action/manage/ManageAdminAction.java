@@ -6,10 +6,10 @@
 
 package com.shishuo.cms.action.manage;
 
-import javax.servlet.http.HttpServletRequest;
-
+import com.shishuo.cms.entity.Admin;
+import com.shishuo.cms.entity.vo.JsonVo;
+import com.shishuo.cms.util.SSUtils;
 import org.apache.commons.lang3.StringUtils;
-import org.junit.Test;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -17,9 +17,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.shishuo.cms.entity.Admin;
-import com.shishuo.cms.entity.vo.JsonVo;
-import com.shishuo.cms.util.SSUtils;
+import javax.servlet.http.HttpServletRequest;
 
 /**
  * 管理员action
