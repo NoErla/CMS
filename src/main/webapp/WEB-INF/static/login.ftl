@@ -25,6 +25,7 @@
     <![endif]-->
     <script src="${BASE_PATH}/static/manage/js/jquery.js"></script>
     <script src="${BASE_PATH}/static/manage/js/jquery.form.min.js"></script>
+    <script src="${BASE_PATH}/static/common/js/login.js"></script>
     <style type="text/css">
         p.error {
             color: #DE5959;
@@ -50,8 +51,8 @@
 
 <div class="container">
 
-    <form class="form-signin" id="adminForm"
-          action="${BASE_PATH}/admin/login.json" autocomplete="off"
+    <form class="form-signin" id="userForm"
+          action="${BASE_PATH}/user/login.json" autocomplete="off"
           method="post">
         <h2 class="form-signin-heading">
             <img src="${TEMPLATE_BASE_PATH}/images/logo.png"
@@ -74,8 +75,8 @@
                        placeholder="验证码" style="width: 100px; float: left;"> <img
                     id="captcha"
                     style="cursor: pointer; cursor: hand; margin-top: -13px;"
-                    onclick="this.src='${BASE_PATH}/user/captcha.htm?'+Math.random();"
-                    src="${BASE_PATH}/user/captcha.htm">
+                    onclick="this.src='${BASE_PATH}/captcha.htm?'+Math.random();"
+                    src="${BASE_PATH}/captcha.htm">
             </div>
             <div class="clearfix"></div>
             <div>
@@ -87,52 +88,9 @@
 
 </div>
 <script type="text/javascript">
-    /**
-     * 显示表单的错误提示
-     * @param id 表单ID
-     * @param errors 错误列表
-     */
-    function showErrors(id, errors) {
-        id.find('p[class=error]').hide();
-        id.find('input,select').removeClass("error");
-        for (var name in errors) {
-            var e = id.find('p[for=' + name + ']');
-            id.find('input[name=' + name + '],select[name=' + name + ']')
-                    .addClass("error");
-            if (e.length == 0) {
-                id.find(
-                        'input[name=' + name + '],select[name=' + name
-                        + ']').after(
-                        '<p for="' + name + '" class="error"></p>');
-                e = id.find('p[for=' + name + ']');
-            }
-            if (errors[name] != "") {
-                e.html(errors[name]);
-                e.show();
-            }
-        }
-    }
     $(function () {
-        $('#adminForm')
-                .ajaxForm(
-                {
-                    dataType: 'json',
-                    success: function (data) {
-                        if (data.result) {
-                            location.href = "${BASE_PATH}/manage/article/list.htm";
-                        } else {
-                            showErrors($('#adminForm'), data.errors);
-                            if (data.msg == "change_captcha") {
-                                $('#captcha').attr(
-                                        "src",
-                                        "${BASE_PATH}/user/captcha.htm?"
-                                        + Math.random());
-                                $(
-                                        '#adminForm input[name="captcha"]').val('');
-                            }
-                        }
-                    }
-                });
+        var base_path = "${BASE_PATH}";
+        ajaxLogin('#userForm', base_path);
     });
 </script>
 </body>
