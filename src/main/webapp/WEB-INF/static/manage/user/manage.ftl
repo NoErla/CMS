@@ -37,8 +37,8 @@
                                     <label class="col-sm-3 col-sm-3 control-label">名称</label>
 
                                     <div class="col-sm-9">
-                                        <input type="text" class="form-control" name="userName"
-                                               placeholder="用户名称" id="userName">
+                                        <input type="text" class="form-control" name="username"
+                                               placeholder="用户名称" id="username">
                                     </div>
                                 </div>
                                 <div class="form-group">
@@ -76,22 +76,25 @@
                                     </tr>
                                     </thead>
                                     <tbody role="alert" aria-live="polite" aria-relevant="all">
-                                    <#list pageVo.list as e>
-                                    <tr class="gradeA odd">
-                                        <td>${e.name}</td>
-                                        <td>
-                                            <!-- Icons -->
-                                            <a href="javascript:void(0);" userId="${e.userId}" title="删除"
-                                               class="js_delete_user">
-                                                删除
-                                            </a>|
-                                            <a href="${BASE_PATH}/manage/userFolder/manage.htm?userId=${e.userId}"
-                                               title="权限">
-                                                权限
-                                            </a>
-                                        </td>
-                                    </tr>
-                                    </#list>
+                                    <#--<#if pageVo.list?has_content>-->
+                                    <#if pageVo.list??>
+                                        <#list pageVo.list as e>
+                                        <tr class="gradeA odd">
+                                            <td>${e.username}</td>
+                                            <td>
+                                                <!-- Icons -->
+                                                <a href="javascript:void(0);" userId="${e.userId}" title="删除"
+                                                   class="js_delete_user">
+                                                    删除
+                                                </a>|
+                                                <a href="${BASE_PATH}/manage/userFolder/manage.htm?userId=${e.userId}"
+                                                   title="权限">
+                                                    权限
+                                                </a>
+                                            </td>
+                                        </tr>
+                                        </#list>
+                                    </#if>
                                     </tbody>
                                 </table>
                                 <div style="height: 30px;">
@@ -114,6 +117,7 @@
                     bootbox.alert("保存成功，将刷新页面", function () {
                         window.location.reload();
                     });
+                    window.location.reload();
                 } else {
                     showErrors($('#add_user_form'), data.errors);
                 }
