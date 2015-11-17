@@ -91,7 +91,14 @@ public interface CommentDao {
 	 * @param fatherId
 	 * @return
 	 */
-	public List<CommentVo> getCommentListByFatherId(@Param("fatherId") long fatherId);
+	public List<CommentVo> getCommentListByFatherId(@Param("fatherId") long fatherId,@Param("offset")int offset, @Param("rows")int rows);
+	
+	/**
+	 * 根据fatherId得到评论数目
+	 * @param fatherId
+	 * @return
+	 */
+	public int getCommentCountByFatherId(@Param("fatherId") long fatherId);
 	
 	/**
 	 * 根据userId得到评论列表
