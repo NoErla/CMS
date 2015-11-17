@@ -104,6 +104,18 @@ public class ManageCommentAction extends ManageBaseAction {
 		return json;
 	}
 	
+	/**
+	 * 修改评论内容
+	 * @param commentId
+	 * @param name
+	 * @param userId
+	 * @param content
+	 * @param url
+	 * @param ip
+	 * @param request
+	 * @return
+	 * @throws CommentNotFoundException
+	 */
 	@ResponseBody
 	@RequestMapping(value = "/update.json", method = RequestMethod.POST)
 	public JsonVo<String> update(

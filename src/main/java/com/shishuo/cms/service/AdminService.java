@@ -12,8 +12,6 @@ import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
-
-import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -129,10 +127,6 @@ public class AdminService {
 		}
 	}
 	
-	@Test
-	public void test(){
-		System.out.println(PropertyUtils.getValue("shishuocms.admin"));
-	}
 
 	/**
 	 * 通过Id获得指定管理员资料

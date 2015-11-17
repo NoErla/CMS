@@ -190,6 +190,31 @@ public class CommentService {
 	}
 	
 	/**
+	 * 根据fatherId得到评论分页
+	 * @param fatherId
+	 * @param pageNum
+	 * @return
+	 */
+	@CacheEvict(value = "comment", allEntries = true)
+	public PageVo<CommentVo> getCommentPageByFatherId(long fatherId,
+			int pageNum) {
+		PageVo<CommentVo> pageVo = new PageVo<CommentVo>(pageNum);
+		pageVo.setRows(20);
+		pageVo.setCount(commentDao
+				.getCommentCountByFatherId(fatherId));
+		List<CommentVo> commentlist = commentDao
+				.getCommentListByFatherId(
+						fatherId,
+						pageVo.getOffset(),
+						pageVo.getRows());
+		
+		pageVo.setList(commentlist);
+		return pageVo;
+	}
+	
+	
+	
+	/**
 	 * 根据status得到评论分页
 	 * 
 	 * @param commentId

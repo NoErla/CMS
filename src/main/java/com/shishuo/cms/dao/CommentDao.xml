@@ -65,6 +65,12 @@
 		limit #{offset},#{rows}
 	</select>
 	
+	<select id="getCommentCountByFatherId" resultType="Integer">
+		select count(*)
+		from comment
+		where fatherId = #{fatherId}
+	</select>
+	
 	<select id="getCommentListByUserId" resultType="com.shishuo.cms.entity.vo.CommentVo">
 		select * 
 		from comment
