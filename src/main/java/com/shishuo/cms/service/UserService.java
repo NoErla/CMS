@@ -121,8 +121,7 @@ public class UserService {
         if (loginPassword.equals(user.getPassword())) {
             HttpSession session = request.getSession();
             user.setPassword("");
-            if (user.equals(PropertyUtils
-                    .getValue("shishuocms.user"))) {
+            if (username.equals(PropertyUtils.getValue("shishuocms.user"))) {
                 user.setUser(true);
             } else {
                 user.setUser(false);

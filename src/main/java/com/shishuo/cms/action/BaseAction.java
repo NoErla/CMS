@@ -9,6 +9,8 @@ import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import com.shishuo.cms.service.ArticleService;
+import com.shishuo.cms.service.CommentService;
+import com.shishuo.cms.service.ConfigService;
 import com.shishuo.cms.service.FolderService;
 import com.shishuo.cms.service.HeadlineService;
 import com.shishuo.cms.service.TemplateService;
@@ -25,9 +27,16 @@ public class BaseAction {
 
 	@Autowired
 	protected ArticleService fileService;
+	
+	@Autowired
+	protected CommentService commentService;
+	
+	@Autowired
+	protected ConfigService configService;
 
 	@Autowired
 	protected TemplateService themeService;
+	
 
 	@Autowired
 	protected HeadlineService headlineService;

@@ -12,7 +12,6 @@ import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -127,6 +126,7 @@ public class AdminService {
 			throw new AuthException("邮箱或密码错误");
 		}
 	}
+	
 
 	/**
 	 * 通过Id获得指定管理员资料

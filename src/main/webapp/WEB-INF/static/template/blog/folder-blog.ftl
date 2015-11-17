@@ -11,7 +11,7 @@
 									${tag_article.createTime?string("yyyy-MM-dd")}
 								</p>
 								<p>
-									${tag_article.content}
+								${tag_article.content}
 								</p>
 							</div>
 						</#list>

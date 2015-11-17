@@ -42,4 +42,9 @@
 		resultType="com.shishuo.cms.entity.Config">
 		select * from config where `key`=#{key}
 	</select>
+	
+	<select id="getConfigList"
+		resultType="com.shishuo.cms.entity.Config">
+		select * from config
+	</select>
 </mapper>  
