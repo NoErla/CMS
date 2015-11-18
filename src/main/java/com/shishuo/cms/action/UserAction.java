@@ -33,7 +33,7 @@ public class UserAction extends BaseAction {
 
     @RequestMapping(value = "/login.htm", method = RequestMethod.GET)
     public String login(HttpServletRequest request, ModelMap modelMap) {
-        return "/user/login";
+        return "/login";
     }
 
     @RequestMapping(value = "/logout.htm", method = RequestMethod.GET)
