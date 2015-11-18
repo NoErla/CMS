@@ -55,6 +55,16 @@
 		<url-pattern>/manage/*</url-pattern>
 	</filter-mapping>
 
+	<filter>
+		<filter-name>login</filter-name>
+		<filter-class>com.shishuo.cms.filter.LoginFilter</filter-class>
+	</filter>
+
+	<filter-mapping>
+		<filter-name>login</filter-name>
+		<url-pattern>/folder/*</url-pattern>
+	</filter-mapping>
+
 	<!-- 让web应用程序启动那个时自动添加属性文件 -->
 	<context-param>
 		<param-name>log4jConfigLocation</param-name>
