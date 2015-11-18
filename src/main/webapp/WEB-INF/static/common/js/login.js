@@ -23,12 +23,12 @@ function showErrors(id, errors) {
     }
 }
 
-function ajaxLogin(selector, base_path) {
+function ajaxLogin(selector, base_path,next_path) {
     $(selector).ajaxForm({
         dataType: 'json',
         success: function (data) {
             if (data.result) {
-                location.href = base_path + "/manage/article/list.htm";
+                location.href = next_path;
             } else {
                 showErrors($(selector), data.errors);
                 if (data.msg == "change_captcha") {

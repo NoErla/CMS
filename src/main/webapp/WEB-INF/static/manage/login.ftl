@@ -95,8 +95,7 @@
 </div>
 <script type="text/javascript">
     $(function () {
-        var base_path = "${BASE_PATH}";
-        ajaxLogin('#adminForm', base_path);
+        ajaxLogin('#adminForm', "${BASE_PATH}", "${BASE_PATH}/manage/article/list.htm");
     });
 </script>
 </body>
