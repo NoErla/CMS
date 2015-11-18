@@ -20,15 +20,7 @@
     <!-- Just for debugging purposes. Don't actually copy these 2 lines! -->
     <!--[if lt IE 9]>
     <script src="${TEMPLATE_BASE_PATH}/js/ie8-responsive-file-warning.js"></script><![endif]-->
-    <script type="text/javascript">
-        window.BasePath = "${BASE_PATH}";
-        window.UEDITOR_HOME_URL = "${BASE_PATH}/";
-    </script>
-    <script src="${BASE_PATH}/static/manage/js/jquery.js?v=${config_v}"></script>
     <script src="${TEMPLATE_BASE_PATH}/js/ie-emulation-modes-warning.js"></script>
-    	<script type="text/javascript" charset="utf-8" src="${TEMPLATE_BASE_PATH}/assets/ueditor/ueditor.config.js?v=${config_v}"></script>
-    	<script type="text/javascript" charset="utf-8" src="${TEMPLATE_BASE_PATH}/assets/ueditor/ueditor.all.min.js?v=${config_v}"> </script>
-    	<script type="text/javascript" charset="utf-8" src="${TEMPLATE_BASE_PATH}/assets/ueditor/lang/zh-cn/zh-cn.js?v=${config_v}"></script>
 
     <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!--[if lt IE 9]>

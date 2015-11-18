@@ -30,19 +30,6 @@
 						</div>
 					</div>
 					<div class="form-group">
-						<label class="col-lg-2 col-sm-2 control-label" for="inputEmail1">是否需要审核</label>
-						<div class="col-lg-10">
-							<label>
-								<input type="radio" placeholder="审核" id="inputEmail1" name="needauditing"
-								class="form-control" value="true" >是
-							</label>
-							<label>
-								<input type="radio" placeholder="审核" id="inputEmail1" name="needauditing"
-								class="form-control" value="false" checked>否
-							</label>
-						</div>
-					</div>
-					<div class="form-group">
 						<div class="col-lg-offset-2 col-lg-10">
 							<button class="btn btn-danger" type="submit">保存</button>
 						</div>

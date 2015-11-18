@@ -6,15 +6,6 @@
 
 package com.shishuo.cms.service;
 
-import java.io.IOException;
-import java.util.Date;
-import java.util.List;
-
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpSession;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
-
 import com.shishuo.cms.constant.SystemConstant;
 import com.shishuo.cms.dao.AdminDao;
 import com.shishuo.cms.entity.Admin;
@@ -23,6 +14,16 @@ import com.shishuo.cms.entity.vo.PageVo;
 import com.shishuo.cms.exception.AuthException;
 import com.shishuo.cms.util.AuthUtils;
 import com.shishuo.cms.util.PropertyUtils;
+import org.junit.Test;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
+import java.io.IOException;
+import java.util.Date;
+import java.util.List;
+
 
 /**
  * 管理员
@@ -127,6 +128,10 @@ public class AdminService {
 		}
 	}
 	
+	@Test
+	public void test(){
+		System.out.println(PropertyUtils.getValue("shishuocms.admin"));
+	}
 
 	/**
 	 * 通过Id获得指定管理员资料

@@ -60,7 +60,7 @@ height: 221px;
 	                        	<#if comment.status=="hidden">
 	                        	<a class="btn btn-danger js_status" href="javascript:void(0);" status="display">审核通过</a>
 	                        	<a class="btn btn-success js_status" href="javascript:void(0);" status="trash">垃圾评论</a>
-	                        	<button class="btn btn-danger update " href="javascript:void(0);" type="submit">更改</button>
+	                        	<a href="javascript:void(0);">更改</a>
 	                        	<#elseif comment.status=="display">
 	                        	<a class="btn btn-success js_status" href="javascript:void(0);" status="trash">垃圾评论</a>
 	                        	<button class="btn btn-danger update " href="javascript:void(0);" type="submit">更改</button>
