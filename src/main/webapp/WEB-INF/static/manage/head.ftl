@@ -2,20 +2,20 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="utf-8">
-<meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="description" content="">
-<meta name="author" content="Mosaddek">
-<meta name="keyword"
-	content="FlatLab, Dashboard, Bootstrap, Admin, Template, Theme, Responsive, Fluid, Retina">
-<link rel="shortcut icon" href="img/favicon.png">
-<title>后台</title>
-<!-- Bootstrap core CSS -->
-<link href="${BASE_PATH}/static/manage/css/bootstrap.min.css?v=${config_v}" rel="stylesheet">
-<link href="${BASE_PATH}/static/manage/css/bootstrap-reset.css?v=${config_v}"
-	rel="stylesheet">
-<link rel="stylesheet" type="text/css" href="${BASE_PATH}/static/manage/css/gallery.css?v=${config_v}" />	
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="Mosaddek">
+    <meta name="keyword"
+          content="FlatLab, Dashboard, Bootstrap, Admin, Template, Theme, Responsive, Fluid, Retina">
+    <link rel="shortcut icon" href="img/favicon.png">
+    <title>后台</title>
+    <!-- Bootstrap core CSS -->
+    <link href="${BASE_PATH}/static/manage/css/bootstrap.min.css?v=${config_v}" rel="stylesheet">
+    <link href="${BASE_PATH}/static/manage/css/bootstrap-reset.css?v=${config_v}"
+          rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="${BASE_PATH}/static/manage/css/gallery.css?v=${config_v}"/>
 <!--external css-->
 <link
 	href="${BASE_PATH}/static/manage/assets/font-awesome/css/font-awesome.css?v=${config_v}"
@@ -90,12 +90,21 @@
 					</li>
 					<li class="">
 						<a <#if menu="folder">class="active"</#if> href="${BASE_PATH}/manage/folder/list.htm"> <i class="icon-folder-open"></i> <span>目录列表</span></a>
+					</li>
+					<li class="">
+						<a <#if menu="comment">class="active"</#if> href="${BASE_PATH}/manage/comment/page.htm"> <i class="icon-folder-open"></i> <span>评论列表</span></a>
 					</li>	
 					<li class="">
 						<a <#if menu="message">class="active"</#if> href="${BASE_PATH}/manage/guestbook/list.htm"> <i class="icon-comments"></i> <span>留言列表</span></a>
 					</li>
 					<li class="">
 						<a <#if menu="admin_list">class="active"</#if> href="${BASE_PATH}/manage/admin/manage.htm"> <i class="icon-user"></i> <span>管理员管理</span></a>
+					</li>
+					<li class="">
+						<a <#if menu="user_list">class="active"</#if> href="${BASE_PATH}/manage/user/page.htm"> <i class="icon-user"></i> <span>用户管理</span></a>
+					</li>
+					<li class="">
+						<a <#if menu="config">class="active"</#if> href="${BASE_PATH}/manage/config/basic.htm"> <i class="icon-cogs"></i> <span>基本设置</span></a>
 					</li>
 					<li class="">
 						<a <#if menu="update_password">class="active"</#if> href="${BASE_PATH}/manage/admin/update.htm"> <i class="icon-cogs"></i> <span>修改密码</span></a>

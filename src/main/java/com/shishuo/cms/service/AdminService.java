@@ -6,16 +6,6 @@
 
 package com.shishuo.cms.service;
 
-import java.io.IOException;
-import java.util.Date;
-import java.util.List;
-
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpSession;
-
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
-
 import com.shishuo.cms.constant.SystemConstant;
 import com.shishuo.cms.dao.AdminDao;
 import com.shishuo.cms.entity.Admin;
@@ -24,6 +14,16 @@ import com.shishuo.cms.entity.vo.PageVo;
 import com.shishuo.cms.exception.AuthException;
 import com.shishuo.cms.util.AuthUtils;
 import com.shishuo.cms.util.PropertyUtils;
+import org.junit.Test;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
+import java.io.IOException;
+import java.util.Date;
+import java.util.List;
+
 
 /**
  * 管理员
@@ -44,7 +44,6 @@ public class AdminService {
 	/**
 	 * 添加管理员
 	 * 
-	 * @param email
 	 * @param name
 	 * @param password
 	 * @return Admin
@@ -82,9 +81,7 @@ public class AdminService {
 	 * 修改管理员资料
 	 * 
 	 * @param adminId
-	 * @param name
 	 * @param password
-	 * @param status
 	 * @return Admin
 	 * @throws AuthException
 	 */
@@ -102,7 +99,7 @@ public class AdminService {
 	/**
 	 * 管理员登陆
 	 * 
-	 * @param email
+	 * @param name
 	 * @param password
 	 * @param request
 	 * @throws IOException
@@ -129,6 +126,11 @@ public class AdminService {
 		} else {
 			throw new AuthException("邮箱或密码错误");
 		}
+	}
+	
+	@Test
+	public void test(){
+		System.out.println(PropertyUtils.getValue("shishuocms.admin"));
 	}
 
 	/**
@@ -161,7 +163,7 @@ public class AdminService {
 	/**
 	 * 获得所有管理员的分页
 	 * 
-	 * @param Integer
+	 * @param pageNum
 	 * @return PageVo<Admin>
 	 */
 	public PageVo<Admin> getAllListPage(int pageNum) {
@@ -177,7 +179,7 @@ public class AdminService {
 	/**
 	 * 通过email获得管理员资料
 	 * 
-	 * @param email
+	 * @param name
 	 * @return Admin
 	 */
 	public Admin getAdminByName(String name) {
