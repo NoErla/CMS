@@ -31,15 +31,4 @@ public class CommentConstant {
 		 */
 		trash
 	};
-
-	public static enum kind {
-		/**
-		 * 隐藏
-		 */
-		article,
-		/**
-		 * 显示
-		 */
-		folder
-	};
 }

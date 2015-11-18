@@ -47,9 +47,6 @@ public class ManageConfigAction extends ManageBaseAction {
 			if(config.getKey().equals("shishuo_seo_title")){
 				modelMap.addAttribute("SYS_SITENAME", config.getValue());
 			}
-			if(config.getKey().equals("shishuo_seo_title")){
-				modelMap.addAttribute("SYS_SITENAME", config.getValue());
-			}
 		}
 		return "manage/config/basic";
 	}
@@ -65,7 +62,9 @@ public class ManageConfigAction extends ManageBaseAction {
 	@RequestMapping(value = "/basic.json", method = RequestMethod.POST)
 	public JsonVo<String> basicSubmit(
 			@RequestParam(value = "sitename") String sitename,
-			@RequestParam(value = "allowcomment") String allowcomment, ModelMap modelMap) {
+			@RequestParam(value = "allowcomment") String allowcomment, 
+			@RequestParam(value = "needauditing") String needauditing,
+			ModelMap modelMap) {
 		JsonVo<String> json = new JsonVo<String>();
 		try {
 			if (StringUtils.isBlank(sitename)) {
@@ -74,6 +73,9 @@ public class ManageConfigAction extends ManageBaseAction {
 			if (StringUtils.isBlank(allowcomment)) {
 				json.getErrors().put("allowcomment", "请选择是否允许评论");
 			}
+			if (StringUtils.isBlank(needauditing)) {
+				json.getErrors().put("needauditing", "请选择是否需要审核");
+			}
 
 			// 检测校验结果
 			validate(json);
@@ -81,6 +83,8 @@ public class ManageConfigAction extends ManageBaseAction {
 					SSUtils.toText(sitename));
 			configService.updagteConfigByKey("allow_comment",
 					SSUtils.toText(allowcomment));
+			configService.updagteConfigByKey("need_auditing",
+					SSUtils.toText(needauditing));
 			json.setResult(true);
 		} catch (Exception e) {
 			json.setResult(false);

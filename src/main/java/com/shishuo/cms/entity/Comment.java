@@ -32,14 +32,6 @@ public class Comment {
 	 */
 	private long fatherId;
 	/**
-	 * 所属种类的Id
-	 */
-	private long kindId;
-	/**
-	 * 所属种类
-	 */
-	private CommentConstant.kind kind;
-	/**
 	 * 评论名称
 	 */
 	private String name;
@@ -81,18 +73,6 @@ public class Comment {
 	}
 	public void setFatherId(long fatherId) {
 		this.fatherId = fatherId;
-	}
-	public long getKindId() {
-		return kindId;
-	}
-	public void setKindId(long kindId) {
-		this.kindId = kindId;
-	}
-	public CommentConstant.kind getKind() {
-		return kind;
-	}
-	public void setKind(CommentConstant.kind kind) {
-		this.kind = kind;
 	}
 	public String getName() {
 		return name;

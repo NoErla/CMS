@@ -27,7 +27,7 @@
                               	placeholder="用户Id" id="userId" value="1" >
                         </input>
 						<input type="hidden" style="font-size:15px;width: 300px;" class="form-control" name="fatherId"
-                              	placeholder="文章Id" id="fatherId" value="1" >
+                              	placeholder="文章Id" id="fatherId" value="${article.articleId }" >
                         </input>
                         <input type="hidden" style="font-size:15px;width: 300px;" class="form-control" name="url"
                               	placeholder="评论url" id="url" value="1" >
@@ -82,7 +82,9 @@
 						window.location.reload();
 					});
 				}else{
-					showErrors($('.update'),data.errors);
+					bootbox.alert("本站目前禁止评论", function() {
+						window.location.reload();
+					});
 				}
 			}
 		});
