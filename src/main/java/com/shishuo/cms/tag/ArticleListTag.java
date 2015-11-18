@@ -48,8 +48,8 @@ public class ArticleListTag extends TagPlugin {
 		// 获取文件的分页
 		try {
 			FolderVo folder = folderService.getFolderById(folderId);
-			List<ArticleVo> articlelist = articleService.getArticleListOfDisplayByPath(
-					folder.getPath(), 0, rows);
+			List<ArticleVo> articlelist = articleService
+					.getArticleListOfDisplayByPath(folder.getPath(), 0, rows);
 			env.setVariable("tag_article_list", BEANS_WRAPPER.wrap(articlelist));
 		} catch (FolderNotFoundException e) {
 			env.setVariable("tag_article_list", BEANS_WRAPPER.wrap(null));

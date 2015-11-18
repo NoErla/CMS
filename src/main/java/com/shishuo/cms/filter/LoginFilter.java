@@ -1,13 +1,7 @@
-/*
- *	Copyright © 2013 Changsha Shishuo Network Technology Co., Ltd. All rights reserved.
- *	长沙市师说网络科技有限公司 版权所有
- *	http://www.shishuo.com
- */
-
 package com.shishuo.cms.filter;
 
 import com.shishuo.cms.constant.SystemConstant;
-import com.shishuo.cms.entity.Admin;
+import com.shishuo.cms.entity.User;
 import org.apache.log4j.Logger;
 
 import javax.servlet.*;
@@ -16,17 +10,14 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
 /**
- * 管理过滤器
- * 
- * @author Herbert
+ * project_name:shishuocms package_name:com.shishuo.cms.filter user: youzipi
+ * date: 15-11-18 下午6:52
  */
-public class ManageFilter implements Filter {
+public class LoginFilter implements Filter {
 
 	protected final Logger logger = Logger.getLogger(this.getClass());
 
 	public void init(FilterConfig filterConfig) throws ServletException {
-		// TODO Auto-generated method stub
-
 	}
 
 	public void doFilter(ServletRequest servletRequest,
@@ -34,22 +25,19 @@ public class ManageFilter implements Filter {
 			throws IOException, ServletException {
 		HttpServletRequest request = (HttpServletRequest) servletRequest;
 		HttpServletResponse response = (HttpServletResponse) servletResponse;
-		Admin admin = (Admin) request.getSession().getAttribute(
-				SystemConstant.SESSION_ADMIN);
-		if (admin == null) {
+		User user = (User) request.getSession().getAttribute(
+				SystemConstant.SESSION_USER);
+		if (user == null) {
 			String path = request.getContextPath();
 			String basePath = request.getScheme() + "://"
 					+ request.getServerName() + ":" + request.getServerPort()
 					+ path;
-			response.sendRedirect(basePath + "/admin/login.htm");
+			response.sendRedirect(basePath + "/user/login.htm");
 		} else {
 			chain.doFilter(request, response);
 		}
 	}
 
 	public void destroy() {
-		// TODO Auto-generated method stub
-
 	}
-
 }

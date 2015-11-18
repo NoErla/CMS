@@ -75,10 +75,9 @@ public class ArticleService {
 	 */
 	@CacheEvict(value = "article", allEntries = true)
 	public Article addArticle(long folderId, long adminId, String title,
-			String summary, ArticleConstant.Status status,String content,
+			String summary, ArticleConstant.Status status, String content,
 			MultipartFile file, String createTime)
-			throws FolderNotFoundException, UploadException,
-			IOException {
+			throws FolderNotFoundException, UploadException, IOException {
 		FolderVo folder = folderService.getFolderById(folderId);
 		Article article = new Article();
 		Date now = new Date();
@@ -105,8 +104,7 @@ public class ArticleService {
 		if (StringUtils.isBlank(createTime)) {
 			article.setCreateTime(now);
 		} else {
-			SimpleDateFormat sdf = new SimpleDateFormat(
-					"yyyy-MM-dd");
+			SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
 			Date date;
 			try {
 				date = sdf.parse(createTime);
@@ -154,13 +152,13 @@ public class ArticleService {
 	 * @throws UploadException
 	 * @throws ParseException
 	 * @throws IOException
-	 * @throws FolderNotFoundException 
+	 * @throws FolderNotFoundException
 	 */
 	@CacheEvict(value = "article", allEntries = true)
-	public Article updateArticle(long articleId, long folderId,
-			long adminId, String title, String summary,
-			String content, ArticleConstant.Status status,MultipartFile file,
-			String time) throws UploadException, IOException, FolderNotFoundException {
+	public Article updateArticle(long articleId, long folderId, long adminId,
+			String title, String summary, String content,
+			ArticleConstant.Status status, MultipartFile file, String time)
+			throws UploadException, IOException, FolderNotFoundException {
 		Date now = new Date();
 		Article article = articleDao.getArticleById(articleId);
 		FolderVo folder = folderService.getFolderById(folderId);
@@ -185,8 +183,7 @@ public class ArticleService {
 		if (StringUtils.isBlank(time)) {
 			article.setCreateTime(now);
 		} else {
-			SimpleDateFormat sdf = new SimpleDateFormat(
-					"yyyy-MM-dd");
+			SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
 			Date date;
 			try {
 				date = sdf.parse(time);
@@ -226,8 +223,7 @@ public class ArticleService {
 			throws ArticleNotFoundException {
 		ArticleVo articleVo = articleDao.getArticleById(articleId);
 		if (articleVo == null) {
-			throw new ArticleNotFoundException(articleId
-					+ " 文件，不存在");
+			throw new ArticleNotFoundException(articleId + " 文件，不存在");
 		} else {
 			return articleVo;
 		}
@@ -246,17 +242,13 @@ public class ArticleService {
 		PageVo<ArticleVo> pageVo = new PageVo<ArticleVo>(pageNum);
 		FolderVo folder = folderService.getFolderById(folderId);
 		pageVo.setRows(rows);
-		pageVo.setCount(articleDao
-				.getArticleCountOfDisplayByPath(folder
-						.getPath()));
-		List<ArticleVo> articlelist = articleDao
-				.getArticleListOfDisplayByPath(
-						folder.getPath(),
-						pageVo.getOffset(),
-						pageVo.getRows());
+		pageVo.setCount(articleDao.getArticleCountOfDisplayByPath(folder
+				.getPath()));
+		List<ArticleVo> articlelist = articleDao.getArticleListOfDisplayByPath(
+				folder.getPath(), pageVo.getOffset(), pageVo.getRows());
 		for (ArticleVo artcle : articlelist) {
-			FolderVo artcleFolder = folderService
-					.getFolderById(artcle.getFolderId());
+			FolderVo artcleFolder = folderService.getFolderById(artcle
+					.getFolderId());
 			artcle.setFolder(artcleFolder);
 		}
 		pageVo.setList(articlelist);
@@ -281,26 +273,21 @@ public class ArticleService {
 		List<ArticleVo> list = new ArrayList<ArticleVo>();
 		int count = 0;
 		if (folderId == 0) {
-			count = this.getArticleCountByAdminIdAndFolderId(
-					adminId, 0, check);
-			list = this.getArticleListByAdminIdAndFolderId(adminId,
-					0, check, pageVo.getOffset(),
-					pageVo.getRows());
+			count = this.getArticleCountByAdminIdAndFolderId(adminId, 0, check);
+			list = this.getArticleListByAdminIdAndFolderId(adminId, 0, check,
+					pageVo.getOffset(), pageVo.getRows());
 		} else {
-			list = this.getArticleListByAdminIdAndFolderId(adminId,
-					folderId, check, pageVo.getOffset(),
-					pageVo.getRows());
-			count = this.getArticleCountByAdminIdAndFolderId(
-					adminId, folderId, check);
+			list = this.getArticleListByAdminIdAndFolderId(adminId, folderId,
+					check, pageVo.getOffset(), pageVo.getRows());
+			count = this.getArticleCountByAdminIdAndFolderId(adminId, folderId,
+					check);
 		}
 		for (ArticleVo article : list) {
 			try {
-				article.setFolder(folderService
-						.getFolderById(article
-								.getFolderId()));
+				article.setFolder(folderService.getFolderById(article
+						.getFolderId()));
 				article.setFolderPathList(folderService
-						.getFolderPathListByFolderId(article
-								.getFolderId()));
+						.getFolderPathListByFolderId(article.getFolderId()));
 			} catch (FolderNotFoundException e) {
 				article.setFolder(new Folder());
 			}
@@ -319,16 +306,16 @@ public class ArticleService {
 	 * @throws FolderNotFoundException
 	 */
 	public List<ArticleVo> getArticleListByAdminIdAndFolderId(long adminId,
-			long folderId, ArticleConstant.check check,
-			long offset, long rows) throws FolderNotFoundException {
+			long folderId, ArticleConstant.check check, long offset, long rows)
+			throws FolderNotFoundException {
 		String path = "";
 		if (folderId != 0) {
 			Folder folder = folderService.getFolderById(folderId);
 			path = folder.getPath();
 		}
 		List<ArticleVo> articleList = articleDao
-				.getArticleListByAdminIdAndPath(adminId, path,
-						check, offset, rows);
+				.getArticleListByAdminIdAndPath(adminId, path, check, offset,
+						rows);
 		return articleList;
 	}
 
@@ -338,16 +325,14 @@ public class ArticleService {
 	 * @return
 	 * @throws FolderNotFoundException
 	 */
-	public int getArticleCountByAdminIdAndFolderId(long adminId,
-			long folderId, ArticleConstant.check check)
-			throws FolderNotFoundException {
+	public int getArticleCountByAdminIdAndFolderId(long adminId, long folderId,
+			ArticleConstant.check check) throws FolderNotFoundException {
 		String path = "";
 		if (folderId != 0) {
 			Folder folder = folderService.getFolderById(folderId);
 			path = folder.getPath();
 		}
-		return articleDao.getArticleCountByAdminIdAndPath(adminId,
-				path, check);
+		return articleDao.getArticleCountByAdminIdAndPath(adminId, path, check);
 	}
 
 	/**
@@ -374,9 +359,8 @@ public class ArticleService {
 	 */
 	public List<ArticleVo> getArticleListOfDisplayByPath(String path,
 			int offset, int rows) {
-		List<ArticleVo> articlelist = articleDao
-				.getArticleListOfDisplayByPath(path, offset,
-						rows);
+		List<ArticleVo> articlelist = articleDao.getArticleListOfDisplayByPath(
+				path, offset, rows);
 		return articlelist;
 	}
 

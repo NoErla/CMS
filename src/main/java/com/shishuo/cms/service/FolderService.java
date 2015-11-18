@@ -42,7 +42,7 @@ public class FolderService {
 
 	@Autowired
 	private AdminService adminService;
-	
+
 	@Autowired
 	private AdminFolderService adminFolderService;
 
@@ -84,7 +84,8 @@ public class FolderService {
 		folder.setCheck(check);
 		folder.setCreateTime(new Date());
 		folderDao.addFolder(folder);
-		adminFolderService.addAdminFolder(adminService.getSuperAdminId(), folder.getFolderId());
+		adminFolderService.addAdminFolder(adminService.getSuperAdminId(),
+				folder.getFolderId());
 		if (fatherId == 0) {
 			this.updatePath(folder.getFolderId(), folder.getFolderId() + "");
 		} else {
@@ -182,7 +183,8 @@ public class FolderService {
 		if (folder == null) {
 			throw new FolderNotFoundException("");
 		} else {
-			logger.debug("目录("+folderId+")中的图片尺寸："+folder.getWidth()+" x "+folder.getHeight());
+			logger.debug("目录(" + folderId + ")中的图片尺寸：" + folder.getWidth()
+					+ " x " + folder.getHeight());
 			return folder;
 		}
 	}

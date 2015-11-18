@@ -46,7 +46,6 @@ public interface CommentDao {
 	 * @return boolean
 	 */
 	public boolean deleteCommentById(@Param("commentId") long commentId);
-	
 
 	// ///////////////////////////////
 	// ///// 修改 ////////
@@ -54,15 +53,17 @@ public interface CommentDao {
 
 	/**
 	 * 修改审核状态
+	 * 
 	 * @param articleId
 	 * @param check
 	 * @return
 	 */
 	public int updateStatus(@Param("commentId") long commentId,
 			@Param("status") CommentConstant.Status status);
-	
+
 	/**
 	 * 修改评论信息
+	 * 
 	 * @param commentId
 	 * @param name
 	 * @param userId
@@ -71,9 +72,10 @@ public interface CommentDao {
 	 * @param ip
 	 */
 	public void updateCommentByCommentId(@Param("commentId") long commentId,
-			@Param("name") String name,@Param("userId") long userId,
-			@Param("content") String content,@Param("url") String url,
+			@Param("name") String name, @Param("userId") long userId,
+			@Param("content") String content, @Param("url") String url,
 			@Param("ip") String ip);
+
 	// ///////////////////////////////
 	// ///// 查詢 ////////
 	// ///////////////////////////////
@@ -88,47 +90,56 @@ public interface CommentDao {
 
 	/**
 	 * 根据fatherId得到评论列表
+	 * 
 	 * @param fatherId
 	 * @return
 	 */
-	public List<CommentVo> getCommentListByFatherId(@Param("fatherId") long fatherId,@Param("offset")int offset, @Param("rows")int rows);
-	
+	public List<CommentVo> getCommentListByFatherId(
+			@Param("fatherId") long fatherId, @Param("offset") int offset,
+			@Param("rows") int rows);
+
 	/**
 	 * 根据fatherId得到评论数目
+	 * 
 	 * @param fatherId
 	 * @return
 	 */
 	public int getCommentCountByFatherId(@Param("fatherId") long fatherId);
-	
+
 	/**
 	 * 根据userId得到评论列表
+	 * 
 	 * @param userId
 	 * @return
 	 */
-	public List<CommentVo> getCommentListByUserId(@Param("userId") long userId,@Param("offset")int offset, @Param("rows")int rows);
-	
+	public List<CommentVo> getCommentListByUserId(@Param("userId") long userId,
+			@Param("offset") int offset, @Param("rows") int rows);
+
 	/**
 	 * 根据userId得到评论的数目
+	 * 
 	 * @param userId
 	 * @return
 	 */
 	public int getCommentCountByUserId(@Param("userId") long userId);
-	
+
 	/**
 	 * 根据status得到评论列表
+	 * 
 	 * @param status
 	 * @return
 	 */
-	public List<CommentVo> getCommentListByStatus(@Param("status") CommentConstant.Status status,@Param("offset")int offset, @Param("rows")int rows);
-	
+	public List<CommentVo> getCommentListByStatus(
+			@Param("status") CommentConstant.Status status,
+			@Param("offset") int offset, @Param("rows") int rows);
+
 	/**
 	 * 根据status得到评论数目
+	 * 
 	 * @param status
 	 * @return
 	 */
-	public int getCommentCountByStatus(@Param("status") CommentConstant.Status status);
-
-	
-	
+	public int getCommentCountByStatus(
+			@Param("status") CommentConstant.Status status);
 
 }

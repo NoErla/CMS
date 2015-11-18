@@ -3,7 +3,7 @@
  *	长沙市师说网络科技有限公司 版权所有
  *	http://www.shishuo.com
  */
-package com.shishuo.cms.action;
+package com.shishuo.cms.action.blog;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -38,7 +38,8 @@ public class FolderAction extends BaseAction {
 		try {
 			Folder folder = folderService.getFolderById(folderId);
 			modelMap.put("folder", folder);
-			FolderVo fatherFolder = folderService.getFolderById(folderService.firstFolderId(folderId));
+			FolderVo fatherFolder = folderService.getFolderById(folderService
+					.firstFolderId(folderId));
 			modelMap.put("g_folderId", fatherFolder.getFolderId());
 			modelMap.put("p", p);
 			return themeService.getFolderTemplate(folder.getFolderId());

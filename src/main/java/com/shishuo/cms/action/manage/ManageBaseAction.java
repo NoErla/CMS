@@ -44,7 +44,7 @@ public class ManageBaseAction {
 
 	@Autowired
 	protected ArticleService articleService;
-	
+
 	@Autowired
 	protected CommentService commentService;
 
@@ -53,7 +53,7 @@ public class ManageBaseAction {
 
 	@Autowired
 	protected AdminService adminService;
-	
+
 	@Autowired
 	protected UserService userService;
 
@@ -90,6 +90,7 @@ public class ManageBaseAction {
 				SystemConstant.SESSION_ADMIN);
 		return admin;
 	}
+
 	/**
 	 * 从session中获得用户的信息
 	 * 

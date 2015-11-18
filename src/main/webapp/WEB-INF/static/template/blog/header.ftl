@@ -24,11 +24,18 @@
         window.BasePath = "${BASE_PATH}";
         window.UEDITOR_HOME_URL = "${BASE_PATH}/";
     </script>
+    <style type="text/css">
+    	.container .blog-like{width:200px;height:600px;border:1px solid blue;float:left;}
+	    .container .blog-content{width:766px;height:600px;border:1px solid #CCC;float:right;padding:10px;overflow: auto}
+	    .container p{text-indent: 20px;}
+	    .container{font-size:16px}
+	    .container{margin: auto;}
+	</style>
     <script src="${BASE_PATH}/static/manage/js/jquery.js?v=${config_v}"></script>
     <script src="${TEMPLATE_BASE_PATH}/js/ie-emulation-modes-warning.js"></script>
-    	<script type="text/javascript" charset="utf-8" src="${TEMPLATE_BASE_PATH}/assets/ueditor/ueditor.config.js?v=${config_v}"></script>
-    	<script type="text/javascript" charset="utf-8" src="${TEMPLATE_BASE_PATH}/assets/ueditor/ueditor.all.min.js?v=${config_v}"> </script>
-    	<script type="text/javascript" charset="utf-8" src="${TEMPLATE_BASE_PATH}/assets/ueditor/lang/zh-cn/zh-cn.js?v=${config_v}"></script>
+    <script type="text/javascript" charset="utf-8" src="${TEMPLATE_BASE_PATH}/assets/ueditor/ueditor.config.js?v=${config_v}"></script>
+    <script type="text/javascript" charset="utf-8" src="${TEMPLATE_BASE_PATH}/assets/ueditor/ueditor.all.min.js?v=${config_v}"> </script>
+    <script type="text/javascript" charset="utf-8" src="${TEMPLATE_BASE_PATH}/assets/ueditor/lang/zh-cn/zh-cn.js?v=${config_v}"></script>
 
     <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!--[if lt IE 9]>

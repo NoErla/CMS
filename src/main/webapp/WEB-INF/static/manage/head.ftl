@@ -16,30 +16,29 @@
     <link href="${BASE_PATH}/static/manage/css/bootstrap-reset.css?v=${config_v}"
           rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="${BASE_PATH}/static/manage/css/gallery.css?v=${config_v}"/>
-    <!--external css-->
-    <link
-            href="${BASE_PATH}/static/manage/assets/font-awesome/css/font-awesome.css?v=${config_v}"
-            rel="stylesheet"/>
-    <link href="${BASE_PATH}/static/manage/assets/fancybox/source/jquery.fancybox.css?v=${config_v}" rel="stylesheet"/>
-    <!-- Custom styles for this template -->
-    <link href="${BASE_PATH}/static/manage/css/style.css?v=${config_v}" rel="stylesheet">
-    <link href="${BASE_PATH}/static/manage/css/style-responsive.css?v=${config_v}" rel="stylesheet"/>
-    <link href="${BASE_PATH}/static/manage/assets/uploadify/uploadify.css?v=${config_v}" rel="stylesheet"/>
-    <link href="${BASE_PATH}/static/manage/assets/bootstrap.datetimepicker/css/bootstrap-datetimepicker.min.css?v=${config_v}"
-          rel="stylesheet"/>
+<!--external css-->
+<link
+	href="${BASE_PATH}/static/manage/assets/font-awesome/css/font-awesome.css?v=${config_v}"
+	rel="stylesheet" />
+<link href="${BASE_PATH}/static/manage/assets/fancybox/source/jquery.fancybox.css?v=${config_v}" rel="stylesheet" />	
+<!-- Custom styles for this template -->
+<link href="${BASE_PATH}/static/manage/css/style.css?v=${config_v}" rel="stylesheet">
+<link href="${BASE_PATH}/static/manage/css/style-responsive.css?v=${config_v}" rel="stylesheet" />
+<link href="${BASE_PATH}/static/manage/assets/uploadify/uploadify.css?v=${config_v}" rel="stylesheet" />
+<link href="${BASE_PATH}/static/manage/assets/bootstrap.datetimepicker/css/bootstrap-datetimepicker.min.css?v=${config_v}" rel="stylesheet" />
 
-    <!-- HTML5 shim and Respond.js IE8 support of HTML5 tooltipss and media queries -->
-    <!--[if lt IE 9]>
-    <script src="${BASE_PATH}/static/manage/js/html5shiv.js"></script>
-    <script src="${BASE_PATH}/static/manage/js/respond.min.js"></script>
+<!-- HTML5 shim and Respond.js IE8 support of HTML5 tooltipss and media queries -->
+<!--[if lt IE 9]>
+      <script src="${BASE_PATH}/static/manage/js/html5shiv.js"></script>
+      <script src="${BASE_PATH}/static/manage/js/respond.min.js"></script>
     <![endif]-->
-    <script type="text/javascript">
-        window.BasePath = "${BASE_PATH}";
-        window.UEDITOR_HOME_URL = "${BASE_PATH}/";
-        kindId = 0;
-        kind = "article";
-    </script>
-    <script src="${BASE_PATH}/static/manage/js/jquery.js?v=${config_v}"></script>
+	<script type="text/javascript">
+		window.BasePath = "${BASE_PATH}";
+		window.UEDITOR_HOME_URL = "${BASE_PATH}/";
+		kindId = 0;
+		kind = "article";
+	</script>
+<script src="${BASE_PATH}/static/manage/js/jquery.js?v=${config_v}"></script>
 </head>
 <body class="boxed-page">
 	<div class="container">

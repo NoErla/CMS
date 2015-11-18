@@ -43,14 +43,13 @@ public class ManageConfigAction extends ManageBaseAction {
 	@RequestMapping(value = "/basic.htm", method = RequestMethod.GET)
 	public String basic(ModelMap modelMap) {
 		List<Config> configList = configService.getConfigList();
-		for(Config config : configList){
-			if(config.getKey().equals("shishuo_seo_title")){
+		for (Config config : configList) {
+			if (config.getKey().equals("shishuo_seo_title")) {
 				modelMap.addAttribute("SYS_SITENAME", config.getValue());
 			}
 		}
 		return "manage/config/basic";
 	}
-	
 
 	/**
 	 * 修改网站配置
@@ -62,7 +61,7 @@ public class ManageConfigAction extends ManageBaseAction {
 	@RequestMapping(value = "/basic.json", method = RequestMethod.POST)
 	public JsonVo<String> basicSubmit(
 			@RequestParam(value = "sitename") String sitename,
-			@RequestParam(value = "allowcomment") String allowcomment, 
+			@RequestParam(value = "allowcomment") String allowcomment,
 			@RequestParam(value = "needauditing") String needauditing,
 			ModelMap modelMap) {
 		JsonVo<String> json = new JsonVo<String>();

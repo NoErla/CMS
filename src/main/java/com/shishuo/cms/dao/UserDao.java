@@ -13,7 +13,6 @@ import org.springframework.stereotype.Repository;
 import com.shishuo.cms.entity.User;
 import com.shishuo.cms.entity.vo.UserVo;
 
-
 /**
  * 用户
  * 
@@ -63,11 +62,12 @@ public interface UserDao {
 	 * @param name
 	 * @return User
 	 * @param password
-	 * @param user_name 
+	 * @param user_name
 	 */
-	public void updateUserByuserId(@Param("userId") long userId,@Param("username")String username,
-			@Param("password") String password,@Param("nickname")String nickname,
-			@Param("name")String name);
+	public void updateUserByuserId(@Param("userId") long userId,
+			@Param("username") String username,
+			@Param("password") String password,
+			@Param("nickname") String nickname, @Param("name") String name);
 
 	// ///////////////////////////////
 	// ///// 查詢 ////////

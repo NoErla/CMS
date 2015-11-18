@@ -82,6 +82,7 @@ public interface ArticleDao {
 
 	/**
 	 * 修改文件审核状态
+	 * 
 	 * @param articleId
 	 * @param check
 	 * @return

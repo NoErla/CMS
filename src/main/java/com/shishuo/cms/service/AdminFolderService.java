@@ -45,5 +45,5 @@ public class AdminFolderService {
 	public AdminFolderVo getAdminFolderById(long adminId, long folderId) {
 		return adminFolderDao.getAdminFolderById(adminId, folderId);
 	}
-	
+
 }

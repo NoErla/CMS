@@ -9,13 +9,14 @@ import org.springframework.stereotype.Service;
 
 @Service
 public class KeyGeneratorService implements KeyGenerator {
-	
+
 	protected final Logger logger = Logger.getLogger(this.getClass());
 
 	@Override
 	public Object generate(Object target, Method method, Object... params) {
-		String key = method.getName().toLowerCase() + "_" + StringUtils.join(params, "_");
-		logger.debug("KEY："+key);
+		String key = method.getName().toLowerCase() + "_"
+				+ StringUtils.join(params, "_");
+		logger.debug("KEY：" + key);
 		return key;
 	}
 

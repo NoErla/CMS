@@ -56,61 +56,77 @@ public class Comment {
 	 * 时间
 	 */
 	private Date createTime;
+
 	public long getCommentId() {
 		return commentId;
 	}
+
 	public void setCommentId(long commentId) {
 		this.commentId = commentId;
 	}
+
 	public long getUserId() {
 		return userId;
 	}
+
 	public void setUserId(long userId) {
 		this.userId = userId;
 	}
+
 	public long getFatherId() {
 		return fatherId;
 	}
+
 	public void setFatherId(long fatherId) {
 		this.fatherId = fatherId;
 	}
+
 	public String getName() {
 		return name;
 	}
+
 	public void setName(String name) {
 		this.name = name;
 	}
+
 	public String getUrl() {
 		return url;
 	}
+
 	public void setUrl(String url) {
 		this.url = url;
 	}
+
 	public String getContent() {
 		return content;
 	}
+
 	public void setContent(String content) {
 		this.content = content;
 	}
+
 	public String getIp() {
 		return ip;
 	}
+
 	public void setIp(String ip) {
 		this.ip = ip;
 	}
+
 	public CommentConstant.Status getStatus() {
 		return status;
 	}
+
 	public void setStatus(CommentConstant.Status status) {
 		this.status = status;
 	}
+
 	public Date getCreateTime() {
 		return createTime;
 	}
+
 	public void setCreateTime(Date createTime) {
 		this.createTime = createTime;
 	}
-
-	
 
 }

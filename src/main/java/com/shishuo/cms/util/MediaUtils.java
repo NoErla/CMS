@@ -29,7 +29,7 @@ import com.shishuo.cms.constant.SystemConstant;
  * 
  */
 public class MediaUtils {
-	
+
 	private static Logger logger = Logger.getLogger(MediaUtils.class);
 
 	/**
@@ -123,7 +123,7 @@ public class MediaUtils {
 	 */
 	public static String saveImage(MultipartFile multipartFile, int width,
 			int height) throws IOException {
-		logger.info("压缩图片尺寸："+width+" x "+height);
+		logger.info("压缩图片尺寸：" + width + " x " + height);
 		SimpleDateFormat formater = new SimpleDateFormat("yyyy/MM/dd");
 		String path = "upload/" + formater.format(new Date()) + "/"
 				+ UUID.randomUUID().toString().replaceAll("-", "") + ".jpg";

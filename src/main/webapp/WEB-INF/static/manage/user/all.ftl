@@ -15,7 +15,18 @@
         	<!-- page start-->
             <section class="panel">
             	<header class="panel-heading">
-               		 所有用户列表
+               				                <div class="row">
+		                  		<div class="col-lg-4">
+							<ul class="breadcrumb" style="margin-bottom:0px;">
+								<li>
+									<a href="${BASE_PATH}/manage/article/list.htm">所有用户信息</a>
+								</li>
+							</ul>
+						   </div>
+						   <div class="col-lg-8">
+								<a class="btn btn-primary" style="float:right;" href="${BASE_PATH}/manage/user/add.htm">增加用户</a>
+						   </div>
+				</div>
                 </header>
                 <div class="panel-body">
                 	<div class="adv-table">

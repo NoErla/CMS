@@ -82,10 +82,10 @@ public class ConfigService {
 		this.getStringByKey(key);
 		return config;
 	}
-	
+
 	// ///////////////////////////////
-		// ///// 查询 ////////
-		// ///////////////////////////////
+	// ///// 查询 ////////
+	// ///////////////////////////////
 
 	/**
 	 * @param key
@@ -100,9 +100,9 @@ public class ConfigService {
 			return config.getValue();
 		}
 	}
-	
+
 	@CacheEvict(value = "config", allEntries = true)
-	public List<Config> getConfigList(){
+	public List<Config> getConfigList() {
 		return configDao.getConfigList();
 	}
 

@@ -16,6 +16,5 @@ public class UserConstant {
 	 * @author Herbert
 	 * 
 	 */
-	
 
 }

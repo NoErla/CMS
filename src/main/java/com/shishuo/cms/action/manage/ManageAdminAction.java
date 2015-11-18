@@ -80,8 +80,7 @@ public class ManageAdminAction extends ManageBaseAction {
 			}
 			// 检测校验结果
 			validate(json);
-			adminService.addAdmin(SSUtils.toText(adminName.trim()),
-					password);
+			adminService.addAdmin(SSUtils.toText(adminName.trim()), password);
 			json.setResult(true);
 		} catch (Exception e) {
 			json.setResult(false);
@@ -101,7 +100,6 @@ public class ManageAdminAction extends ManageBaseAction {
 		modelMap.put("pageVo", adminService.getAllListPage(pageNum));
 		return "manage/admin/all";
 	}
-	
 
 	/**
 	 * 进入单个admmin页面

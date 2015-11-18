@@ -4,7 +4,7 @@
  *	http://www.shishuo.com
  */
 
-package com.shishuo.cms.action;
+package com.shishuo.cms.action.blog;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -24,31 +24,32 @@ import com.shishuo.cms.entity.vo.JsonVo;
  * 
  */
 @Controller
-@RequestMapping("/comment")
+@RequestMapping("/blog/comment")
 public class CommentAction extends BaseAction {
 
 	@ResponseBody
 	@RequestMapping(value = "/add.json", method = RequestMethod.POST)
 	public JsonVo<CommentVo> add(@RequestParam("userId") long userId,
 			@RequestParam("fatherId") long fatherId,
-			@RequestParam("name") String name,
-			@RequestParam("url") String url,
-			@RequestParam("content") String content,
-			ModelMap modelMap,HttpServletRequest request) {
+			@RequestParam("name") String name, @RequestParam("url") String url,
+			@RequestParam("content") String content, ModelMap modelMap,
+			HttpServletRequest request) {
 		JsonVo<CommentVo> json = new JsonVo<CommentVo>();
 		String ip = request.getRemoteAddr();
 		try {
-			if(configService.getStringByKey("allow_comment").equals("false")){
+			if (configService.getStringByKey("allow_comment").equals("false")) {
 				json.setResult(false);
 				json.setMsg("本站目前禁止评论");
 				return json;
 			}
-				
-			if(configService.getStringByKey("need_auditing").equals("false"))
-				commentService.addComment(userId, fatherId,  name, url, content, ip, CommentConstant.Status.display, null);
+
+			if (configService.getStringByKey("need_auditing").equals("false"))
+				commentService.addComment(userId, fatherId, name, url, content,
+						ip, CommentConstant.Status.display, null);
 			else
-				commentService.addComment(userId, fatherId,  name, url, content, ip, CommentConstant.Status.hidden, null);
-			
+				commentService.addComment(userId, fatherId, name, url, content,
+						ip, CommentConstant.Status.hidden, null);
+
 			json.setResult(true);
 			return json;
 		} catch (Exception e) {

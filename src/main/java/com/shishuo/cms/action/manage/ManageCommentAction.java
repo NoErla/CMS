@@ -22,7 +22,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
-
 import com.shishuo.cms.constant.CommentConstant;
 import com.shishuo.cms.entity.Admin;
 import com.shishuo.cms.entity.Comment;
@@ -41,7 +40,6 @@ import com.shishuo.cms.util.SSUtils;
 @RequestMapping("/manage/comment")
 public class ManageCommentAction extends ManageBaseAction {
 
-
 	/**
 	 * @author 进入某种评论的列表分页的首页
 	 * 
@@ -50,13 +48,15 @@ public class ManageCommentAction extends ManageBaseAction {
 	public String list(
 			@RequestParam(value = "p", defaultValue = "1") int pageNum,
 			@RequestParam(value = "status", defaultValue = "display") CommentConstant.Status status,
-			HttpServletRequest request, ModelMap modelMap)
-			 {
+			HttpServletRequest request, ModelMap modelMap) {
 		PageVo<CommentVo> pageVo = commentService.getCommentPageByStatus(
 				status, pageNum);
-		int hiddenCount = commentService.getCommentCountByStatus(CommentConstant.Status.hidden);
-		int displayCount = commentService.getCommentCountByStatus(CommentConstant.Status.display);
-		int trashCount = commentService.getCommentCountByStatus(CommentConstant.Status.trash);
+		int hiddenCount = commentService
+				.getCommentCountByStatus(CommentConstant.Status.hidden);
+		int displayCount = commentService
+				.getCommentCountByStatus(CommentConstant.Status.display);
+		int trashCount = commentService
+				.getCommentCountByStatus(CommentConstant.Status.trash);
 		modelMap.put("hiddenCount", hiddenCount);
 		modelMap.put("displayCount", displayCount);
 		modelMap.put("trashCount", trashCount);
@@ -65,22 +65,23 @@ public class ManageCommentAction extends ManageBaseAction {
 		modelMap.put("p", pageNum);
 		return "manage/comment/all";
 	}
-	
+
 	/**
 	 * 进入单个评论界面
+	 * 
 	 * @return
-	 * @throws CommentNotFoundException 
+	 * @throws CommentNotFoundException
 	 */
 	@RequestMapping(value = "/detail.htm", method = RequestMethod.GET)
 	public String detail(
 			@RequestParam(value = "commentId", defaultValue = "0") long commentId,
-			ModelMap modelMap) throws CommentNotFoundException{
+			ModelMap modelMap) throws CommentNotFoundException {
 		CommentVo commentVo = commentService.getCommentById(commentId);
 		modelMap.put("comment", commentVo);
 		return "manage/comment/detail";
-		
+
 	}
-	
+
 	/**
 	 * @author 修改评论审核状态
 	 * @throws ArticleNotFoundException
@@ -103,9 +104,10 @@ public class ManageCommentAction extends ManageBaseAction {
 		}
 		return json;
 	}
-	
+
 	/**
 	 * 修改评论内容
+	 * 
 	 * @param commentId
 	 * @param name
 	 * @param userId
@@ -124,19 +126,20 @@ public class ManageCommentAction extends ManageBaseAction {
 			@RequestParam(value = "userId") long userId,
 			@RequestParam(value = "content") String content,
 			@RequestParam(value = "url") String url,
-			@RequestParam(value = "ip") String ip,
-			HttpServletRequest request) throws CommentNotFoundException {
+			@RequestParam(value = "ip") String ip, HttpServletRequest request)
+			throws CommentNotFoundException {
 		JsonVo<String> json = new JsonVo<String>();
-		try{
-		commentService.updateCommentByCommentId(commentId, name, userId, content, url, ip);
-		json.setResult(true);
-		}catch(Exception e){
+		try {
+			commentService.updateCommentByCommentId(commentId, name, userId,
+					content, url, ip);
+			json.setResult(true);
+		} catch (Exception e) {
 			json.setResult(false);
 			json.setMsg(e.getMessage());
 		}
 		return json;
 	}
-	
+
 	/**
 	 * @author 根据userId查询评论
 	 * 
@@ -145,13 +148,15 @@ public class ManageCommentAction extends ManageBaseAction {
 	public String findByFatherId(
 			@RequestParam(value = "p", defaultValue = "1") int pageNum,
 			@RequestParam(value = "fatherId") long fatherId,
-			HttpServletRequest request, ModelMap modelMap)
-			 {
+			HttpServletRequest request, ModelMap modelMap) {
 		PageVo<CommentVo> pageVo = commentService.getCommentPageByFatherId(
 				fatherId, pageNum);
-		int hiddenCount = commentService.getCommentCountByStatus(CommentConstant.Status.hidden);
-		int displayCount = commentService.getCommentCountByStatus(CommentConstant.Status.display);
-		int trashCount = commentService.getCommentCountByStatus(CommentConstant.Status.trash);
+		int hiddenCount = commentService
+				.getCommentCountByStatus(CommentConstant.Status.hidden);
+		int displayCount = commentService
+				.getCommentCountByStatus(CommentConstant.Status.display);
+		int trashCount = commentService
+				.getCommentCountByStatus(CommentConstant.Status.trash);
 		modelMap.put("hiddenCount", hiddenCount);
 		modelMap.put("displayCount", displayCount);
 		modelMap.put("trashCount", trashCount);
@@ -160,5 +165,5 @@ public class ManageCommentAction extends ManageBaseAction {
 		modelMap.put("p", pageNum);
 		return "manage/comment/all";
 	}
-	
+
 }

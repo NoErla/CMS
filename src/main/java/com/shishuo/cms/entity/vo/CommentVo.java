@@ -1,8 +1,6 @@
 package com.shishuo.cms.entity.vo;
 
-
 import com.shishuo.cms.entity.Comment;
-
 
 public class CommentVo extends Comment {
 	private String articleTitle;
@@ -14,6 +12,5 @@ public class CommentVo extends Comment {
 	public void setArticleTitle(String articleTitle) {
 		this.articleTitle = articleTitle;
 	}
-	
-	
+
 }
