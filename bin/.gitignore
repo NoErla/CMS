@@ -1,0 +1,14 @@
+/.project
+.settings
+*.class
+.classpath
+.project
+.DS_Store
+/target
+/shishuocms.properties
+#output
+/dist
+# IDEA
+/.idea
+/shishuocms.iml
+/bin
