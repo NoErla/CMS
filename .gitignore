@@ -1,3 +1,4 @@
+/.project
 .settings
 *.class
 .classpath
@@ -5,3 +6,8 @@
 .DS_Store
 /target
 /shishuocms.properties
+#output
+/dist
+# IDEA
+/.idea
+/shishuocms.iml

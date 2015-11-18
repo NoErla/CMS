@@ -1,6 +1,6 @@
 <#assign menu="user">
 <#assign submenu="add_user">
-<#include "/manage/head.ftl">
+<#include "../head.ftl">
 <style type="text/css">
 .m-bot15 {
     margin-bottom: 5px;
@@ -91,4 +91,4 @@
 		}); 
 	});	
 </script>
-<#include "/manage/foot.ftl">
+<#include "../foot.ftl">

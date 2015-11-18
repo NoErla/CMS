@@ -3,6 +3,7 @@ package com.shishuo.cms.service;
 import java.util.Date;
 import java.util.List;
 
+import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.annotation.CacheEvict;
 import org.springframework.stereotype.Service;
@@ -44,4 +45,5 @@ public class AdminFolderService {
 	public AdminFolderVo getAdminFolderById(long adminId, long folderId) {
 		return adminFolderDao.getAdminFolderById(adminId, folderId);
 	}
+	
 }

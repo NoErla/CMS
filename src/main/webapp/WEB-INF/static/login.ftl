@@ -5,24 +5,18 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="">
     <meta name="author" content="Mosaddek">
-    <meta name="keyword"
-          content="FlatLab, Dashboard, Bootstrap, Admin, Template, Theme, Responsive, Fluid, Retina">
+    <meta name="keyword" content="FlatLab, Dashboard, Bootstrap, Admin, Template, Theme, Responsive, Fluid, Retina">
 
     <title>师说CMS 后台</title>
 
     <!-- Bootstrap core CSS -->
-    <link href="${BASE_PATH}/static/manage/css/bootstrap.min.css"
-          rel="stylesheet">
-    <link href="${BASE_PATH}/static/manage/css/bootstrap-reset.css"
-          rel="stylesheet">
+    <link href="${BASE_PATH}/static/manage/css/bootstrap.min.css" rel="stylesheet">
+    <link href="${BASE_PATH}/static/manage/css/bootstrap-reset.css" rel="stylesheet">
     <!--external css-->
-    <link
-            href="${BASE_PATH}/static/manage/assets/font-awesome/css/font-awesome.css"
-            rel="stylesheet"/>
+    <link href="${BASE_PATH}/static/manage/assets/font-awesome/css/font-awesome.css" rel="stylesheet"/>
     <!-- Custom styles for this template -->
     <link href="${BASE_PATH}/static/manage/css/style.css" rel="stylesheet">
-    <link href="${BASE_PATH}/static/manage/css/style-responsive.css"
-          rel="stylesheet"/>
+    <link href="${BASE_PATH}/static/manage/css/style-responsive.css" rel="stylesheet"/>
 
     <!-- HTML5 shim and Respond.js IE8 support of HTML5 tooltipss and media queries -->
     <!--[if lt IE 9]>
@@ -57,8 +51,8 @@
 
 <div class="container">
 
-    <form class="form-signin" id="adminForm"
-          action="${BASE_PATH}/admin/login.json" autocomplete="off"
+    <form class="form-signin" id="userForm"
+          action="${BASE_PATH}/user/login.json" autocomplete="off"
           method="post">
         <h2 class="form-signin-heading">
             <img src="${TEMPLATE_BASE_PATH}/images/logo.png"
@@ -95,7 +89,7 @@
 </div>
 <script type="text/javascript">
     $(function () {
-        ajaxLogin('#adminForm', "${BASE_PATH}", "${BASE_PATH}/manage/article/list.htm");
+        ajaxLogin('#userForm', "${BASE_PATH}", "${BASE_PATH}/index.htm");
     });
 </script>
 </body>

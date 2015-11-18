@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!-- Changsha Shishuo Network Technology Co., Ltd. All rights reserved. -->
+<!-- 长沙市师说网络科技有限公司 版权所有 -->
+<!-- http://www.shishuo.com -->
+
+<mapper namespace="com.shishuo.cms.dao.CommentDao">
+
+	<!-- ############################## -->
+	<!-- ###### 增加 ###### -->
+	<!-- ############################## -->
+	<insert id="addComment" parameterType="com.shishuo.cms.entity.Comment">
+		insert into
+		comment(userId,fatherId,name,url,content,ip,status,createTime)
+		values(#{userId},#{fatherId},#{name},#{url},#{content},#{ip},#{status},#{createTime})
+		<selectKey resultType="long" keyProperty="commentId">
+			SELECT
+			LAST_INSERT_ID()
+		</selectKey>
+	</insert>
+
+	<!-- ############################## -->
+	<!-- ###### 删除 ###### -->
+	<!-- ############################## -->
+
+	<delete id="deleteCommentById" parameterType="com.shishuo.cms.entity.Comment">
+		delete from comment
+		where commentId=#{commentId}
+	</delete>
+
+	<delete id="deleteCommentListByStatus">
+		delete from comment
+		where status=#{status}
+	</delete>
+
+	<!-- ############################## -->
+	<!-- ###### 修改 ###### -->
+	<!-- ############################## -->
+	<update id="updateStatus">
+		update comment set status=#{status} where commentId=#{commentId}
+	</update>
+	
+	<update id="updateCommentByCommentId">
+		update comment set name=#{name},userId=#{userId},content=#{content},url=#{url},ip=#{ip} 
+		where commentId=#{commentId}
+	</update>
+
+	<!-- ############################## -->
+	<!-- ###### 查询 ###### -->
+	<!-- ############################## -->
+
+	<select id="getCommentById" parameterType="long"
+		resultType="com.shishuo.cms.entity.vo.CommentVo">
+		select * from comment where commentId=#{commentId}
+	</select>
+
+	
+
+	<select id="getCommentListByFatherId" resultType="com.shishuo.cms.entity.vo.CommentVo">
+		select article.title as articleTitle,comment.* 
+		from comment,article
+		where COMMENT.fatherId=article.articleId AND fatherId = #{fatherId}
+		order by createTime desc
+		limit #{offset},#{rows}
+	</select>
+	
+	<select id="getCommentCountByFatherId" resultType="Integer">
+		select count(*)
+		from comment
+		where fatherId = #{fatherId}
+	</select>
+	
+	<select id="getCommentListByUserId" resultType="com.shishuo.cms.entity.vo.CommentVo">
+		select article.title as articleTitle,comment.* 
+		from comment,article
+		where COMMENT.fatherId=article.articleId AND comment.userId = #{userId}
+		order by createTime desc
+		limit #{offset},#{rows}
+	</select>
+	
+	<select id="getCommentCountByUserId" resultType="Integer">
+		select count(*)
+		from comment
+		where userId = #{userId}
+	</select>
+	
+	<select id="getCommentListByStatus" resultType="com.shishuo.cms.entity.vo.CommentVo">
+		select article.title as articleTitle,comment.* 
+		from comment,article
+		where COMMENT.fatherId=article.articleId AND comment.status = #{status}
+		order by createTime desc
+		limit #{offset},#{rows}
+	</select>
+	
+	<select id="getCommentCountByStatus" resultType="Integer">
+		select count(*)
+		from comment
+		where status = #{status}
+	</select>
+	
+	
+
+</mapper>  

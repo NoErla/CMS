@@ -17,16 +17,10 @@
 						</div>
 					</div>
 					<div class="form-group">
-						<label class="col-lg-2 col-sm-2 control-label" for="inputEmail1">是否允许评论</label>
+						<label class="col-lg-2 col-sm-2 control-label" for="inputEmail1">网站描述</label>
 						<div class="col-lg-10">
-							<label>
-								<input type="radio" placeholder="评论" id="inputEmail1" name="allowcomment"
-								class="form-control" value="true" checked>是
-							</label>
-							<label>
-								<input type="radio" placeholder="评论" id="inputEmail1" name="allowcomment"
-								class="form-control" value="false">否
-							</label>
+							<input type="text" placeholder="网站描述" id="inputEmail1" name="sitedesc"
+								class="form-control" value="${SYS_SITEDESC}">
 						</div>
 					</div>
 					<div class="form-group">

@@ -11,6 +11,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.apache.commons.lang3.StringUtils;
+import org.junit.Test;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -19,6 +20,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.shishuo.cms.constant.SystemConstant;
+import com.shishuo.cms.entity.Config;
 import com.shishuo.cms.entity.vo.JsonVo;
 import com.shishuo.cms.util.SSUtils;
 
@@ -40,10 +42,15 @@ public class ManageConfigAction extends ManageBaseAction {
 	 */
 	@RequestMapping(value = "/basic.htm", method = RequestMethod.GET)
 	public String basic(ModelMap modelMap) {
-		List<String> templateList = this.getTemplate();
-		modelMap.addAttribute("templateList", templateList);
-		return "system/config/basic";
+		List<Config> configList = configService.getConfigList();
+		for(Config config : configList){
+			if(config.getKey().equals("shishuo_seo_title")){
+				modelMap.addAttribute("SYS_SITENAME", config.getValue());
+			}
+		}
+		return "manage/config/basic";
 	}
+	
 
 	/**
 	 * 修改网站配置
@@ -55,22 +62,29 @@ public class ManageConfigAction extends ManageBaseAction {
 	@RequestMapping(value = "/basic.json", method = RequestMethod.POST)
 	public JsonVo<String> basicSubmit(
 			@RequestParam(value = "sitename") String sitename,
-			@RequestParam(value = "sitedesc") String sitedesc, ModelMap modelMap) {
+			@RequestParam(value = "allowcomment") String allowcomment, 
+			@RequestParam(value = "needauditing") String needauditing,
+			ModelMap modelMap) {
 		JsonVo<String> json = new JsonVo<String>();
 		try {
 			if (StringUtils.isBlank(sitename)) {
 				json.getErrors().put("sitename", "网站名称不能为空");
 			}
-			if (StringUtils.isBlank(sitedesc)) {
-				json.getErrors().put("sitedesc", "网站描述不能为空");
+			if (StringUtils.isBlank(allowcomment)) {
+				json.getErrors().put("allowcomment", "请选择是否允许评论");
+			}
+			if (StringUtils.isBlank(needauditing)) {
+				json.getErrors().put("needauditing", "请选择是否需要审核");
 			}
 
 			// 检测校验结果
 			validate(json);
-			configService.updagteConfigByKey("sys_sitename",
+			configService.updagteConfigByKey("shishuo_seo_title",
 					SSUtils.toText(sitename));
-			configService.updagteConfigByKey("sys_sitedesc",
-					SSUtils.toText(sitedesc));
+			configService.updagteConfigByKey("allow_comment",
+					SSUtils.toText(allowcomment));
+			configService.updagteConfigByKey("need_auditing",
+					SSUtils.toText(needauditing));
 			json.setResult(true);
 		} catch (Exception e) {
 			json.setResult(false);

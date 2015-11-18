@@ -36,22 +36,20 @@ CREATE TABLE `article` (
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 ROW_FORMAT=COMPACT COMMENT='文件';
 
 CREATE TABLE `comment` (
-  `commentId` bigint(20) NOT NULL AUTO_INCREMENT COMMENT '评论ID',
-  `userId` bigint(20) DEFAULT NULL COMMENT '用户ID',
-  `fatherId` bigint(20) DEFAULT NULL COMMENT '父评论ID',
-  `kindId` bigint(20) DEFAULT NULL,
-  `kind` varchar(45) DEFAULT NULL COMMENT '文件ID',
-  `name` varchar(45) DEFAULT NULL COMMENT '评论者',
-  `email` varchar(45) DEFAULT NULL COMMENT '评论者邮件地址',
-  `url` varchar(200) DEFAULT NULL COMMENT '评论者网址',
-  `phone` bigint(20) DEFAULT NULL,
-  `content` text COMMENT '内容',
-  `ip` varchar(45) DEFAULT NULL COMMENT 'Ip',
-  `status` varchar(20) DEFAULT NULL COMMENT '状态',
-  `createTime` datetime DEFAULT NULL COMMENT '创建时间',
+  `commentId` BIGINT(20) NOT NULL AUTO_INCREMENT COMMENT '评论ID',
+  `userId` BIGINT(20) DEFAULT NULL COMMENT '用户ID',
+  `fatherId` BIGINT(20) DEFAULT NULL COMMENT '父评论ID',
+  `kindId` BIGINT(20) DEFAULT NULL,
+  `kind` VARCHAR(45) DEFAULT NULL COMMENT '文件ID',
+  `name` VARCHAR(45) DEFAULT NULL COMMENT '评论名称',
+  `url` VARCHAR(200) DEFAULT NULL COMMENT '评论者网址',
+  `content` TEXT COMMENT '内容',
+  `ip` VARCHAR(45) DEFAULT NULL COMMENT 'Ip',
+  `status` VARCHAR(20) DEFAULT NULL COMMENT '状态',
+  `createTime` DATETIME DEFAULT NULL COMMENT '创建时间',
   PRIMARY KEY (`commentId`),
   KEY `idx_status` (`status`) USING BTREE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 ROW_FORMAT=COMPACT COMMENT='评论';
+) ENGINE=INNODB DEFAULT CHARSET=utf8 ROW_FORMAT=COMPACT COMMENT='评论';
 
 CREATE TABLE `config` (
   `key` varchar(45) NOT NULL COMMENT 'Key',

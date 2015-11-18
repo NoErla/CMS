@@ -13,14 +13,6 @@
     content: "| ";
     padding: 0 5px;
 }
-.content {
-	white-space:nowrap;
-	overflow: hidden;
-	text-overflow:ellipsis;
-	width: 684px;
-	display: block;
-	
-}
 </style>
 	<!--main content start-->
 	<section id="main-content">
@@ -51,7 +43,7 @@
                             	<thead>
                                 	<tr>
                 						<th>评论名称</th>
-                						<th>评论人id</th>
+                						<th>邮箱</th>
                 						<th>内容</th>
                 						<th>状态</th>
                 						<th>操作</th>
@@ -61,11 +53,11 @@
                             		<#list pageVo.list as commentVo>
                             		<tr class="gradeA odd">
                                     	<td>${commentVo.name}</td>
-                                    	<td>${commentVo.userId}</td>
-                                    	<td class="content">${commentVo.content}</td>
+                                    	<td>${commentVo.email}</td>
+                                    	<td>${commentVo.content}</td>
                                     	<td>
                                     		<#if commentVo.status=="hidden">正在审核
-                                    		<#elseif commentVo.status=="display">已经通过
+                                    		<#elseif commentVo.status=="display">已通过审核
                                     		<#else>垃圾评论
                                     		</#if>
                                     	</td>

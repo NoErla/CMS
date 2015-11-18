@@ -6,6 +6,8 @@
 
 package com.shishuo.cms.dao;
 
+import java.util.List;
+
 import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Repository;
 
@@ -64,4 +66,11 @@ public interface ConfigDao {
 	 * @return Config
 	 */
 	public Config getConfigByKey(@Param("key") String key);
+	
+	/**
+	 * 查看所有
+	 * 
+	 * @return Config
+	 */
+	public List<Config> getConfigList();
 }
