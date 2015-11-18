@@ -10,34 +10,39 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
 /**
+<<<<<<< HEAD
  * project_name:shishuocms package_name:com.shishuo.cms.filter user: youzipi
+=======
+ * project_name:shishuocms
+ * package_name:com.shishuo.cms.filter
+ * user: youzipi
+>>>>>>> e57fa74daf5e46081a1eeffa7aba00b7cf0053b7
  * date: 15-11-18 下午6:52
  */
 public class LoginFilter implements Filter {
 
-	protected final Logger logger = Logger.getLogger(this.getClass());
+    protected final Logger logger = Logger.getLogger(this.getClass());
 
-	public void init(FilterConfig filterConfig) throws ServletException {
-	}
+    public void init(FilterConfig filterConfig) throws ServletException {
+    }
 
-	public void doFilter(ServletRequest servletRequest,
-			ServletResponse servletResponse, FilterChain chain)
-			throws IOException, ServletException {
-		HttpServletRequest request = (HttpServletRequest) servletRequest;
-		HttpServletResponse response = (HttpServletResponse) servletResponse;
-		User user = (User) request.getSession().getAttribute(
-				SystemConstant.SESSION_USER);
-		if (user == null) {
-			String path = request.getContextPath();
-			String basePath = request.getScheme() + "://"
-					+ request.getServerName() + ":" + request.getServerPort()
-					+ path;
-			response.sendRedirect(basePath + "/user/login.htm");
-		} else {
-			chain.doFilter(request, response);
-		}
-	}
+    public void doFilter(ServletRequest servletRequest,
+                         ServletResponse servletResponse, FilterChain chain)
+            throws IOException, ServletException {
+        HttpServletRequest request = (HttpServletRequest) servletRequest;
+        HttpServletResponse response = (HttpServletResponse) servletResponse;
+        User user = (User) request.getSession().getAttribute(SystemConstant.SESSION_USER);
+        if (user == null) {
+            String path = request.getContextPath();
+            String basePath = request.getScheme() + "://"
+                    + request.getServerName() + ":" + request.getServerPort()
+                    + path;
+            response.sendRedirect(basePath + "/user/login.htm");
+        } else {
+            chain.doFilter(request, response);
+        }
+    }
 
-	public void destroy() {
-	}
+    public void destroy() {
+    }
 }

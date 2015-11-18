@@ -22,34 +22,32 @@ import java.io.IOException;
  */
 public class ManageFilter implements Filter {
 
-	protected final Logger logger = Logger.getLogger(this.getClass());
 
-	public void init(FilterConfig filterConfig) throws ServletException {
-		// TODO Auto-generated method stub
+    protected final Logger logger = Logger.getLogger(this.getClass());
 
-	}
+    public void init(FilterConfig filterConfig) throws ServletException {
+        // TODO Auto-generated method stub
 
-	public void doFilter(ServletRequest servletRequest,
-			ServletResponse servletResponse, FilterChain chain)
-			throws IOException, ServletException {
-		HttpServletRequest request = (HttpServletRequest) servletRequest;
-		HttpServletResponse response = (HttpServletResponse) servletResponse;
-		Admin admin = (Admin) request.getSession().getAttribute(
-				SystemConstant.SESSION_ADMIN);
-		if (admin == null) {
-			String path = request.getContextPath();
-			String basePath = request.getScheme() + "://"
-					+ request.getServerName() + ":" + request.getServerPort()
-					+ path;
-			response.sendRedirect(basePath + "/admin/login.htm");
-		} else {
-			chain.doFilter(request, response);
-		}
-	}
+    }
 
-	public void destroy() {
-		// TODO Auto-generated method stub
+    public void doFilter(ServletRequest servletRequest,
+                         ServletResponse servletResponse, FilterChain chain)
+            throws IOException, ServletException {
+        HttpServletRequest request = (HttpServletRequest) servletRequest;
+        HttpServletResponse response = (HttpServletResponse) servletResponse;
+        Admin admin = (Admin) request.getSession().getAttribute(SystemConstant.SESSION_ADMIN);
+        if (admin == null) {
+            String path = request.getContextPath();
+            String basePath = request.getScheme() + "://"
+                    + request.getServerName() + ":" + request.getServerPort()
+                    + path;
+            response.sendRedirect(basePath + "/admin/login.htm");
+        } else {
+            chain.doFilter(request, response);
+        }
+    }
 
-	}
+    public void destroy() {
+    }
 
 }

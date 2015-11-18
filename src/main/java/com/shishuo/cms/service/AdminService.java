@@ -122,12 +122,6 @@ public class AdminService {
 			throw new AuthException("邮箱或密码错误");
 		}
 	}
-
-	@Test
-	public void test() {
-		System.out.println(PropertyUtils.getValue("shishuocms.admin"));
-	}
-
 	/**
 	 * 通过Id获得指定管理员资料
 	 */

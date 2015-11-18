@@ -28,25 +28,19 @@
         	<!-- page start-->
         	<div class="row">
                   <div class="col-lg-12">
-                  <form action="${BASE_PATH}/manage/comment/findByFatherId.htm">
                       <!--breadcrumbs start -->
                       <ul class="breadcrumb">
                           <li><a href="${BASE_PATH}/manage/comment/page.htm?status=hidden">未审核评论(${hiddenCount})</a></li>
                		 	  <li><a href="${BASE_PATH}/manage/comment/page.htm?status=display">审核通过的评论(${displayCount})</a></li>
                		 	  <li><a href="${BASE_PATH}/manage/comment/page.htm?status=trash">垃圾评论(${trashCount})</a></li>
-               		 	  <li>
-               		 	  		<input type="text" name="fatherId" value=""><button href="javascript:void(0);" type="submit">查询</button>
-               		 	  </li> 	  
                       </ul>
                       <!--breadcrumbs end -->
-                  </form>
                   </div>
               </div>  
             <section class="panel">
             	<header class="panel-heading">
                 <#if statusType=="hidden">未审核评论列表
                 <#elseif statusType=="display">审核通过的评论列表
-                <#elseif statusType=="findByFatherId">根据文章Id查找
                 <#else>垃圾评论列表
                 </#if>
                 </header>
@@ -56,8 +50,7 @@
                             <table class="table table-striped table-advance table-hover">
                             	<thead>
                                 	<tr>
-                						<th>文章Id</th>
-                						<th>文章名</th>
+                						<th>评论名称</th>
                 						<th>评论人id</th>
                 						<th>内容</th>
                 						<th>状态</th>
@@ -67,8 +60,7 @@
                             	<tbody role="alert" aria-live="polite" aria-relevant="all">
                             		<#list pageVo.list as commentVo>
                             		<tr class="gradeA odd">
-                            			<td>${commentVo.fatherId}</td>
-                                    	<td>${commentVo.articleTitle}</td>
+                                    	<td>${commentVo.name}</td>
                                     	<td>${commentVo.userId}</td>
                                     	<td class="content">${commentVo.content}</td>
                                     	<td>

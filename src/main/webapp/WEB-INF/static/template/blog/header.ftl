@@ -20,6 +20,7 @@
     <!-- Just for debugging purposes. Don't actually copy these 2 lines! -->
     <!--[if lt IE 9]>
     <script src="${TEMPLATE_BASE_PATH}/js/ie8-responsive-file-warning.js"></script><![endif]-->
+
     <script type="text/javascript">
         window.BasePath = "${BASE_PATH}";
         window.UEDITOR_HOME_URL = "${BASE_PATH}/";

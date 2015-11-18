@@ -79,5 +79,4 @@ public class AdminAction extends BaseAction {
 		}
 		return json;
 	}
-
 }
