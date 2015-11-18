@@ -6,7 +6,11 @@
 
 package com.shishuo.cms.action;
 
+
 import java.util.List;
+
+import javax.servlet.http.HttpServletRequest;
+
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -27,6 +31,10 @@ import com.shishuo.cms.entity.vo.PageVo;
 @Controller
 @RequestMapping("/article")
 public class ArticleAction extends BaseAction {
+	@RequestMapping(value = "/article2.htm", method = RequestMethod.POST)
+	public String article2(HttpServletRequest request, ModelMap modelMap) {
+		return "/template/blog/article2";
+	}
 
 	@RequestMapping(value = "/{articleId}.htm", method = RequestMethod.GET)
 	public String article(@PathVariable long articleId,
