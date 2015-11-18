@@ -4,13 +4,11 @@
  *	http://www.shishuo.com
  */
 
-package com.shishuo.cms.action;
-
+package com.shishuo.cms.action.blog;
 
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
-
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -29,7 +27,7 @@ import com.shishuo.cms.entity.vo.PageVo;
  * 
  */
 @Controller
-@RequestMapping("/article")
+@RequestMapping("/blog/article")
 public class ArticleAction extends BaseAction {
 	@RequestMapping(value = "/article2.htm", method = RequestMethod.POST)
 	public String article2(HttpServletRequest request, ModelMap modelMap) {
@@ -42,13 +40,15 @@ public class ArticleAction extends BaseAction {
 			ModelMap modelMap) {
 		try {
 			ArticleVo article = fileService.getArticleById(articleId);
-			PageVo<CommentVo> commentList = commentService.getCommentPageByFatherId(articleId, pageNum);
+			PageVo<CommentVo> commentList = commentService
+					.getCommentPageByFatherId(articleId, pageNum);
 			Folder folder = folderService.getFolderById(article.getFolderId());
 			modelMap.addAttribute("p", pageNum);
 			modelMap.addAttribute("folder", folder);
 			modelMap.addAttribute("article", article);
 			modelMap.addAttribute("commentList", commentList);
-			modelMap.addAttribute("g_folderId", folderService.firstFolderId(folder.getFolderId()));
+			modelMap.addAttribute("g_folderId",
+					folderService.firstFolderId(folder.getFolderId()));
 			return themeService.getArticleTemplate(article.getFolderId(),
 					articleId);
 		} catch (Exception e) {

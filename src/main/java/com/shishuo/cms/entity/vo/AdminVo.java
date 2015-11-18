@@ -13,7 +13,5 @@ public class AdminVo extends Admin {
 	public void setAdmin(boolean isAdmin) {
 		this.isAdmin = isAdmin;
 	}
-	
-	
 
 }

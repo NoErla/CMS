@@ -7,7 +7,7 @@
 						<#list tag_article_page.list as tag_article>
 							<div class="blog-post">
 								
-								<h2 class="blog-post-title"><a href="/article/${tag_article.articleId }.htm">${tag_article.title}</a></h2>
+								<h2 class="blog-post-title"><a href="/blog/article/${tag_article.articleId }.htm">${tag_article.title}</a></h2>
 								<p class="blog-post-meta">
 									${tag_article.createTime?string("yyyy-MM-dd")}
 								</p>

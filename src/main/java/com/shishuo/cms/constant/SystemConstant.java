@@ -35,7 +35,7 @@ public class SystemConstant {
 	 * Session中的管理员Key
 	 */
 	public static final String SESSION_ADMIN = "SESSION_ADMIN";
-	
+
 	/**
 	 * Session中的用户Key
 	 */
@@ -50,7 +50,5 @@ public class SystemConstant {
 	 * 
 	 */
 	public static final String LANGUAGE = "language";
-
-	
 
 }

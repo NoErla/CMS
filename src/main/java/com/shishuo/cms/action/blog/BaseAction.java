@@ -3,7 +3,7 @@
  *	长沙市师说网络科技有限公司 版权所有
  *	http://www.shishuo.com
  */
-package com.shishuo.cms.action;
+package com.shishuo.cms.action.blog;
 
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;

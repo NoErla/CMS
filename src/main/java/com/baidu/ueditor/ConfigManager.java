@@ -40,7 +40,7 @@ public final class ConfigManager {
 	private ConfigManager(String rootPath, String contextPath, String uri)
 			throws FileNotFoundException, IOException {
 
-//		rootPath = rootPath.replace("\\", "/");
+		// rootPath = rootPath.replace("\\", "/");
 
 		this.rootPath = rootPath;
 		this.contextPath = contextPath;

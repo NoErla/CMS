@@ -45,7 +45,7 @@ public class FileManager {
 		}
 
 		Collection<File> list = FileUtils.listFiles(dir, this.allowFiles, true);
-		
+
 		Collections.reverse((List<File>) list);
 
 		if (index < 0 || index > list.size()) {
@@ -86,7 +86,6 @@ public class FileManager {
 
 	private String getPath(File file) {
 
-		
 		String path = file.getAbsolutePath();
 
 		return path.replace(this.rootPath, "/");

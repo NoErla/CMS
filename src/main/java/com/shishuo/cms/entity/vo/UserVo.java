@@ -2,8 +2,8 @@ package com.shishuo.cms.entity.vo;
 
 import com.shishuo.cms.entity.User;
 
-public class UserVo extends User{
-	
+public class UserVo extends User {
+
 	private boolean isUser;
 
 	public boolean isUser() {
@@ -13,7 +13,5 @@ public class UserVo extends User{
 	public void setUser(boolean isUser) {
 		this.isUser = isUser;
 	}
-	
-	
 
 }

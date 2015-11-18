@@ -66,7 +66,7 @@ public interface ConfigDao {
 	 * @return Config
 	 */
 	public Config getConfigByKey(@Param("key") String key);
-	
+
 	/**
 	 * 查看所有
 	 * 

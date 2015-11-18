@@ -89,8 +89,7 @@
 </div>
 <script type="text/javascript">
     $(function () {
-        var base_path = "${BASE_PATH}";
-        ajaxLogin('#userForm', base_path);
+        ajaxLogin('#userForm', "${BASE_PATH}", "${BASE_PATH}/index.htm");
     });
 </script>
 </body>

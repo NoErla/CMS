@@ -33,7 +33,7 @@ public class User {
 	 * 密码
 	 */
 	private String password;
-	
+
 	/**
 	 * 昵称
 	 */
@@ -96,7 +96,5 @@ public class User {
 	public void setCreateTime(Date createTime) {
 		this.createTime = createTime;
 	}
-
-	
 
 }

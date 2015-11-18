@@ -32,9 +32,8 @@ public class ArticleUrlTag extends TagPlugin {
 	@Autowired
 	private FolderService folderService;
 
-	public void execute(Environment env, Map params,
-			TemplateModel[] loopVars, TemplateDirectiveBody body)
-			throws TemplateException, IOException {
+	public void execute(Environment env, Map params, TemplateModel[] loopVars,
+			TemplateDirectiveBody body) throws TemplateException, IOException {
 		String artcleId = params.get("articleId").toString();
 		String basePath = HttpUtils.getBasePath(request);
 		env.getOut().write(basePath + "/article/" + artcleId + ".htm");

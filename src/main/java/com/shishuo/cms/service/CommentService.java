@@ -47,8 +47,6 @@ public class CommentService {
 	@Autowired
 	private CommentDao commentDao;
 
-
-
 	// ///////////////////////////////
 	// ///// 增加 ////////
 	// ///////////////////////////////
@@ -68,14 +66,13 @@ public class CommentService {
 	 * @throws IOException
 	 */
 	@CacheEvict(value = "comment", allEntries = true)
-	public Comment addComment(long userId, long fatherId,
-			String name,String url,String content,
-			String ip,CommentConstant.Status status,
-			String createTime)
-			throws UploadException,IOException {
+	public Comment addComment(long userId, long fatherId, String name,
+			String url, String content, String ip,
+			CommentConstant.Status status, String createTime)
+			throws UploadException, IOException {
 		Comment comment = new Comment();
 		Date now = new Date();
-		
+
 		comment.setUserId(userId);
 		comment.setFatherId(fatherId);
 		comment.setName(name);
@@ -85,8 +82,7 @@ public class CommentService {
 		if (StringUtils.isBlank(createTime)) {
 			comment.setCreateTime(now);
 		} else {
-			SimpleDateFormat sdf = new SimpleDateFormat(
-					"yyyy-MM-dd");
+			SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
 			Date date;
 			try {
 				date = sdf.parse(createTime);
@@ -119,17 +115,19 @@ public class CommentService {
 	// ///////////////////////////////
 	/**
 	 * 改变评论审核状态
+	 * 
 	 * @param commentId
 	 * @param status
 	 */
 	@CacheEvict(value = "comment", allEntries = true)
 	public void updateStatus(long commentId, Status status) {
 		commentDao.updateStatus(commentId, status);
-		
+
 	}
-	
+
 	/**
 	 * 修改评论
+	 * 
 	 * @param commentId
 	 * @param name
 	 * @param userId
@@ -138,10 +136,12 @@ public class CommentService {
 	 * @param ip
 	 */
 	@CacheEvict(value = "comment", allEntries = true)
-	public void updateCommentByCommentId(long commentId,String name,long userId,
-			String content,String url,String ip) {
-		commentDao.updateCommentByCommentId(commentId, name, userId, content, url, ip);	
+	public void updateCommentByCommentId(long commentId, String name,
+			long userId, String content, String url, String ip) {
+		commentDao.updateCommentByCommentId(commentId, name, userId, content,
+				url, ip);
 	}
+
 	// ///////////////////////////////
 	// ///// 查詢 ////////
 	// ///////////////////////////////
@@ -153,12 +153,11 @@ public class CommentService {
 	 * @return comment
 	 */
 	@Cacheable(value = "comment", key = "'getCommentById_'+#commentId")
-	public CommentVo getCommentById(long commentId) 
-			throws CommentNotFoundException{
+	public CommentVo getCommentById(long commentId)
+			throws CommentNotFoundException {
 		CommentVo commentVo = commentDao.getCommentById(commentId);
 		if (commentVo == null) {
-			throw new CommentNotFoundException(commentId
-					+ " 评论，不存在");
+			throw new CommentNotFoundException(commentId + " 评论，不存在");
 		} else {
 			return commentVo;
 		}
@@ -171,53 +170,42 @@ public class CommentService {
 	 * @return pageVo
 	 */
 	@CacheEvict(value = "comment", allEntries = true)
-	public PageVo<CommentVo> getCommentPageByUserId(long userId,
-			int pageNum) {
+	public PageVo<CommentVo> getCommentPageByUserId(long userId, int pageNum) {
 		PageVo<CommentVo> pageVo = new PageVo<CommentVo>(pageNum);
 		pageVo.setRows(20);
-		pageVo.setCount(commentDao
-				.getCommentCountByUserId(userId));
+		pageVo.setCount(commentDao.getCommentCountByUserId(userId));
 		Map<String, String> map = new HashMap<String, String>();
 		map.put("userId", Long.toString(userId));
 		pageVo.setArgs(map);
-		List<CommentVo> commentlist = commentDao
-				.getCommentListByUserId(
-						userId,
-						pageVo.getOffset(),
-						pageVo.getRows());
-		
+		List<CommentVo> commentlist = commentDao.getCommentListByUserId(userId,
+				pageVo.getOffset(), pageVo.getRows());
+
 		pageVo.setList(commentlist);
 		return pageVo;
 	}
-	
+
 	/**
 	 * 根据fatherId得到评论分页
+	 * 
 	 * @param fatherId
 	 * @param pageNum
 	 * @return
 	 */
 	@CacheEvict(value = "comment", allEntries = true)
-	public PageVo<CommentVo> getCommentPageByFatherId(long fatherId,
-			int pageNum) {
+	public PageVo<CommentVo> getCommentPageByFatherId(long fatherId, int pageNum) {
 		PageVo<CommentVo> pageVo = new PageVo<CommentVo>(pageNum);
 		pageVo.setRows(20);
-		pageVo.setCount(commentDao
-				.getCommentCountByFatherId(fatherId));
+		pageVo.setCount(commentDao.getCommentCountByFatherId(fatherId));
 		Map<String, String> map = new HashMap<String, String>();
 		map.put("fatherId", Long.toString(fatherId));
 		pageVo.setArgs(map);
-		List<CommentVo> commentlist = commentDao
-				.getCommentListByFatherId(
-						fatherId,
-						pageVo.getOffset(),
-						pageVo.getRows());
-		
+		List<CommentVo> commentlist = commentDao.getCommentListByFatherId(
+				fatherId, pageVo.getOffset(), pageVo.getRows());
+
 		pageVo.setList(commentlist);
 		return pageVo;
 	}
-	
-	
-	
+
 	/**
 	 * 根据status得到评论分页
 	 * 
@@ -225,33 +213,25 @@ public class CommentService {
 	 * @return pageVo
 	 */
 	@CacheEvict(value = "comment", allEntries = true)
-	public PageVo<CommentVo> getCommentPageByStatus(CommentConstant.Status status,
-			int pageNum) {
+	public PageVo<CommentVo> getCommentPageByStatus(
+			CommentConstant.Status status, int pageNum) {
 		PageVo<CommentVo> pageVo = new PageVo<CommentVo>(pageNum);
 		pageVo.setRows(20);
-		pageVo.setCount(commentDao
-				.getCommentCountByStatus(status));
+		pageVo.setCount(commentDao.getCommentCountByStatus(status));
 		Map<String, String> map = new HashMap<String, String>();
 		map.put("status", status.toString());
 		pageVo.setArgs(map);
-		List<CommentVo> commentlist = commentDao
-				.getCommentListByStatus(
-						status,
-						pageVo.getOffset(),
-						pageVo.getRows());
-		
+		List<CommentVo> commentlist = commentDao.getCommentListByStatus(status,
+				pageVo.getOffset(), pageVo.getRows());
+
 		pageVo.setList(commentlist);
 		return pageVo;
 	}
-	
-	@CacheEvict(value = "comment", allEntries = true)
-	public int getCommentCountByStatus(CommentConstant.Status status){
-		return commentDao.getCommentCountByStatus(status);
-		
-	}
 
-	
-	
-	
+	@CacheEvict(value = "comment", allEntries = true)
+	public int getCommentCountByStatus(CommentConstant.Status status) {
+		return commentDao.getCommentCountByStatus(status);
+
+	}
 
 }

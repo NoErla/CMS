@@ -1,4 +1,4 @@
-package com.shishuo.cms.action;
+package com.shishuo.cms.action.blog;
 
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,7 +14,7 @@ import com.shishuo.cms.service.GuestbookService;
 import com.shishuo.cms.util.SSUtils;
 
 @Controller
-@RequestMapping("/guestbook")
+@RequestMapping("/blog/guestbook")
 public class GuestbookAction extends BaseAction {
 
 	@Autowired

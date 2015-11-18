@@ -22,7 +22,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
-import com.shishuo.cms.action.ArticleAction;
+import com.shishuo.cms.action.blog.ArticleAction;
 import com.shishuo.cms.constant.ArticleConstant;
 import com.shishuo.cms.constant.MediaConstant;
 import com.shishuo.cms.entity.Admin;
@@ -176,8 +176,8 @@ public class ManageArticleAction extends ManageBaseAction {
 			throws ParseException {
 		JsonVo<Article> json = new JsonVo<Article>();
 		try {
-			Article article = articleService.updateArticle(articleId,
-					folderId, this.getAdmin(request).getAdminId(),
+			Article article = articleService.updateArticle(articleId, folderId,
+					this.getAdmin(request).getAdminId(),
 					SSUtils.toText(title.trim()), SSUtils.toText(summary),
 					content, status, file, createTime);
 			json.setT(article);

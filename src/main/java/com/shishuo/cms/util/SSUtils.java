@@ -37,7 +37,7 @@ public class SSUtils {
 	public static String toText(String str) {
 		return HtmlUtils.htmlEscape(str);
 	}
-	
+
 	public static String toHTML(String str) {
 		return Jsoup.clean(str, Whitelist.relaxed());
 	}

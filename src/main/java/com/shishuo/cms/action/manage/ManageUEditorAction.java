@@ -31,15 +31,14 @@ public class ManageUEditorAction extends ManageBaseAction {
 	@RequestMapping(value = "/ueditor.htm")
 	public String config(@RequestParam(value = "action") String action,
 			HttpServletResponse response, HttpServletRequest request) {
-//		response.setContentType("text/html;charset=UTF-8");
+		// response.setContentType("text/html;charset=UTF-8");
 		// String root = HttpUtils.getBasePath(request);
-		String root = PropertyUtils.getRoot()
-				+ java.io.File.separatorChar;
+		String root = PropertyUtils.getRoot() + java.io.File.separatorChar;
 		// root = root.replace("\\", "/");
 		// if (!root.endsWith("/")) {
 		// root += "/";
 		// }
-		logger.info("ueditor root:"+root);
+		logger.info("ueditor root:" + root);
 		return new ActionEnter(request, root).exec();
 	}
 
@@ -52,20 +51,16 @@ public class ManageUEditorAction extends ManageBaseAction {
 	public String photoManager(HttpServletRequest request) {
 		String photoUploadPath = HttpUtils.getRealPath()
 				+ SystemConstant.UPLOAD_FOLDER;
-		List<java.io.File> fileList = MediaUtils.getFiles(
-				photoUploadPath, new ArrayList<java.io.File>(),
-				MediaUtils.PHOTO_TYPE);
+		List<java.io.File> fileList = MediaUtils.getFiles(photoUploadPath,
+				new ArrayList<java.io.File>(), MediaUtils.PHOTO_TYPE);
 		String imgStr = "";
 		for (java.io.File file : fileList) {
-			imgStr += file.getPath().replace(
-					HttpUtils.getRealPath(), "")
+			imgStr += file.getPath().replace(HttpUtils.getRealPath(), "")
 					+ "ue_separate_ue";
 		}
 		if (imgStr != "") {
-			imgStr = imgStr.substring(0,
-					imgStr.lastIndexOf("ue_separate_ue"))
-					.replace(java.io.File.separator, "/")
-					.trim();
+			imgStr = imgStr.substring(0, imgStr.lastIndexOf("ue_separate_ue"))
+					.replace(java.io.File.separator, "/").trim();
 		}
 		return imgStr;
 	}
