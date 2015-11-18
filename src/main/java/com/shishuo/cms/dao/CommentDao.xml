@@ -12,8 +12,8 @@
 	<!-- ############################## -->
 	<insert id="addComment" parameterType="com.shishuo.cms.entity.Comment">
 		insert into
-		comment(userId,fatherId,kindId,kind,name,url,content,ip,status,createTime)
-		values(#{userId},#{fatherId},#{kindId},#{kind},#{name},#{url},#{content},#{ip},#{status},#{createTime})
+		comment(userId,fatherId,name,url,content,ip,status,createTime)
+		values(#{userId},#{fatherId},#{name},#{url},#{content},#{ip},#{status},#{createTime})
 		<selectKey resultType="long" keyProperty="commentId">
 			SELECT
 			LAST_INSERT_ID()
@@ -58,17 +58,23 @@
 	
 
 	<select id="getCommentListByFatherId" resultType="com.shishuo.cms.entity.vo.CommentVo">
-		select * 
-		from comment
-		where fatherId = #{fatherId}
+		select article.title as articleTitle,comment.* 
+		from comment,article
+		where COMMENT.fatherId=article.articleId AND fatherId = #{fatherId}
 		order by createTime desc
 		limit #{offset},#{rows}
 	</select>
 	
-	<select id="getCommentListByUserId" resultType="com.shishuo.cms.entity.vo.CommentVo">
-		select * 
+	<select id="getCommentCountByFatherId" resultType="Integer">
+		select count(*)
 		from comment
-		where userId = #{userId}
+		where fatherId = #{fatherId}
+	</select>
+	
+	<select id="getCommentListByUserId" resultType="com.shishuo.cms.entity.vo.CommentVo">
+		select article.title as articleTitle,comment.* 
+		from comment,article
+		where COMMENT.fatherId=article.articleId AND comment.userId = #{userId}
 		order by createTime desc
 		limit #{offset},#{rows}
 	</select>
@@ -80,9 +86,9 @@
 	</select>
 	
 	<select id="getCommentListByStatus" resultType="com.shishuo.cms.entity.vo.CommentVo">
-		select * 
-		from comment
-		where status = #{status}
+		select article.title as articleTitle,comment.* 
+		from comment,article
+		where COMMENT.fatherId=article.articleId AND comment.status = #{status}
 		order by createTime desc
 		limit #{offset},#{rows}
 	</select>

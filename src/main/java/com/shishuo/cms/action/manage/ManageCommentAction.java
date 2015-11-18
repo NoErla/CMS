@@ -49,7 +49,7 @@ public class ManageCommentAction extends ManageBaseAction {
 	@RequestMapping(value = "/page.htm", method = RequestMethod.GET)
 	public String list(
 			@RequestParam(value = "p", defaultValue = "1") int pageNum,
-			@RequestParam(value = "status", defaultValue = "hidden") CommentConstant.Status status,
+			@RequestParam(value = "status", defaultValue = "display") CommentConstant.Status status,
 			HttpServletRequest request, ModelMap modelMap)
 			 {
 		PageVo<CommentVo> pageVo = commentService.getCommentPageByStatus(
@@ -104,6 +104,18 @@ public class ManageCommentAction extends ManageBaseAction {
 		return json;
 	}
 	
+	/**
+	 * 修改评论内容
+	 * @param commentId
+	 * @param name
+	 * @param userId
+	 * @param content
+	 * @param url
+	 * @param ip
+	 * @param request
+	 * @return
+	 * @throws CommentNotFoundException
+	 */
 	@ResponseBody
 	@RequestMapping(value = "/update.json", method = RequestMethod.POST)
 	public JsonVo<String> update(
@@ -123,6 +135,30 @@ public class ManageCommentAction extends ManageBaseAction {
 			json.setMsg(e.getMessage());
 		}
 		return json;
+	}
+	
+	/**
+	 * @author 根据userId查询评论
+	 * 
+	 */
+	@RequestMapping(value = "/findByFatherId.htm", method = RequestMethod.GET)
+	public String findByFatherId(
+			@RequestParam(value = "p", defaultValue = "1") int pageNum,
+			@RequestParam(value = "fatherId") long fatherId,
+			HttpServletRequest request, ModelMap modelMap)
+			 {
+		PageVo<CommentVo> pageVo = commentService.getCommentPageByFatherId(
+				fatherId, pageNum);
+		int hiddenCount = commentService.getCommentCountByStatus(CommentConstant.Status.hidden);
+		int displayCount = commentService.getCommentCountByStatus(CommentConstant.Status.display);
+		int trashCount = commentService.getCommentCountByStatus(CommentConstant.Status.trash);
+		modelMap.put("hiddenCount", hiddenCount);
+		modelMap.put("displayCount", displayCount);
+		modelMap.put("trashCount", trashCount);
+		modelMap.put("pageVo", pageVo);
+		modelMap.put("statusType", "findByFatherId");
+		modelMap.put("p", pageNum);
+		return "manage/comment/all";
 	}
 	
 }

@@ -11,7 +11,9 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.apache.commons.lang3.StringUtils;
 import org.apache.ibatis.annotations.Param;
@@ -55,8 +57,6 @@ public class CommentService {
 	 * 
 	 * @param userId
 	 * @param fatherId
-	 * @param kindId
-	 * @param kind
 	 * @param name
 	 * @param url
 	 * @param content
@@ -68,8 +68,8 @@ public class CommentService {
 	 * @throws IOException
 	 */
 	@CacheEvict(value = "comment", allEntries = true)
-	public Comment addComment(long userId, long fatherId, long kindId,
-			CommentConstant.kind kind, String name,String url,String content,
+	public Comment addComment(long userId, long fatherId,
+			String name,String url,String content,
 			String ip,CommentConstant.Status status,
 			String createTime)
 			throws UploadException,IOException {
@@ -78,8 +78,6 @@ public class CommentService {
 		
 		comment.setUserId(userId);
 		comment.setFatherId(fatherId);
-		comment.setKindId(kindId);
-		comment.setKind(kind);
 		comment.setName(name);
 		comment.setUrl(url);
 		comment.setContent(content);
@@ -179,6 +177,9 @@ public class CommentService {
 		pageVo.setRows(20);
 		pageVo.setCount(commentDao
 				.getCommentCountByUserId(userId));
+		Map<String, String> map = new HashMap<String, String>();
+		map.put("userId", Long.toString(userId));
+		pageVo.setArgs(map);
 		List<CommentVo> commentlist = commentDao
 				.getCommentListByUserId(
 						userId,
@@ -188,6 +189,34 @@ public class CommentService {
 		pageVo.setList(commentlist);
 		return pageVo;
 	}
+	
+	/**
+	 * 根据fatherId得到评论分页
+	 * @param fatherId
+	 * @param pageNum
+	 * @return
+	 */
+	@CacheEvict(value = "comment", allEntries = true)
+	public PageVo<CommentVo> getCommentPageByFatherId(long fatherId,
+			int pageNum) {
+		PageVo<CommentVo> pageVo = new PageVo<CommentVo>(pageNum);
+		pageVo.setRows(20);
+		pageVo.setCount(commentDao
+				.getCommentCountByFatherId(fatherId));
+		Map<String, String> map = new HashMap<String, String>();
+		map.put("fatherId", Long.toString(fatherId));
+		pageVo.setArgs(map);
+		List<CommentVo> commentlist = commentDao
+				.getCommentListByFatherId(
+						fatherId,
+						pageVo.getOffset(),
+						pageVo.getRows());
+		
+		pageVo.setList(commentlist);
+		return pageVo;
+	}
+	
+	
 	
 	/**
 	 * 根据status得到评论分页
@@ -202,6 +231,9 @@ public class CommentService {
 		pageVo.setRows(20);
 		pageVo.setCount(commentDao
 				.getCommentCountByStatus(status));
+		Map<String, String> map = new HashMap<String, String>();
+		map.put("status", status.toString());
+		pageVo.setArgs(map);
 		List<CommentVo> commentlist = commentDao
 				.getCommentListByStatus(
 						status,
