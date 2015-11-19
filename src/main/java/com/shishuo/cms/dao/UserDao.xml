@@ -37,7 +37,9 @@
 	<update id="updateUserByuserId">
 		update user set 
 		username=#{username},
-		password=#{password},
+		<if test="password != null">
+			password=#{password},
+		</if>
 		nickname=#{nickname},
 		name=#{name}
 		where userId=#{userId}
