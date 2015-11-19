@@ -93,7 +93,10 @@ public class UserService {
 	public void updateUserByUserId(long userId, String username,
 			String password, String nickname, String name) throws AuthException {
 		String user_username = username;
-		String user_password = AuthUtils.getPassword(password);
+		String user_password = null;
+		if(!password.equals("********")){
+			user_password = AuthUtils.getPassword(password);
+		}
 		String user_nickame = nickname;
 		String user_name = name;
 		userDao.updateUserByuserId(userId, user_username, user_password,

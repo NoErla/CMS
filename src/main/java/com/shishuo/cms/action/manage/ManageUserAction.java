@@ -126,16 +126,16 @@ public class ManageUserAction extends ManageBaseAction {
 			HttpServletRequest request) {
 		JsonVo<String> json = new JsonVo<String>();
 		try {
+				if (StringUtils.isBlank(password)) {
+					json.getErrors().put("password", "密码不能为空");
+				}
+				if (password.length() < 6) {
+					json.getErrors().put("password", "密码不能小于6位数");
+				}
+				if (password.length() > 18) {
+					json.getErrors().put("password", "密码不能大于18位数");
+				}
 
-			if (StringUtils.isBlank(password)) {
-				json.getErrors().put("password", "密码不能为空");
-			}
-			if (password.length() < 6) {
-				json.getErrors().put("password", "密码不能小于6位数");
-			}
-			if (password.length() > 18) {
-				json.getErrors().put("password", "密码不能大于18位数");
-			}
 			// 检测校验结果
 			validate(json);
 			userService.updateUserByUserId(userId, username,
