@@ -1,4 +1,11 @@
 <#include "header.ftl">
+    <style type="text/css">
+    	.container .blog-like{width:200px;height:600px;border:1px solid blue;float:left;}
+	    .container .blog-content{width:766px;height:600px;border:1px solid #CCC;float:right;padding:10px;overflow: auto}
+	    .container p{text-indent: 20px;}
+	    .container{font-size:16px}
+	    .container{margin: auto;}
+	</style>
 <!--main content start-->
 <section id="main-content">
 	<section class="wrapper">
@@ -80,7 +87,6 @@
 	$(function() {
 		$('#addComment').ajaxForm({
 			dataType : 'json',
-			type : 'POST',
 			success : function(data) {
 				if (data.result) {
 					bootbox.alert("保存成功，将刷新页面", function() {
